@@ -92,8 +92,9 @@ public repository's Contents permission and a protected
    ```
 
    It creates the public GitHub Release, uploads `QuotaGlance.dmg`, verifies
-   anonymous download, and only then commits/pushes `appcast.xml`. This prevents
-   clients from seeing an update whose asset still returns 404.
+   anonymous download, and only then commits/pushes `appcast.xml` plus its
+   root-level `QuotaGlance.md` release notes. This prevents clients from seeing
+   an update whose asset or release notes still return 404.
 
 ## Acceptance pass
 

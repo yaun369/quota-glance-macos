@@ -15,6 +15,7 @@ release_version="$(awk -F= '/^[[:space:]]*MARKETING_VERSION[[:space:]]*=/{gsub(/
 tag="v${release_version}"
 dmg_path="${candidate_root}/updates/QuotaGlance.dmg"
 appcast_candidate="${candidate_root}/appcast-candidate.xml"
+release_notes_candidate="${candidate_root}/updates/QuotaGlance.md"
 release_notes="${repo_root}/docs/releases/${release_version}.md"
 
 [[ "${CONFIRM_PUBLIC_RELEASE:-}" == "$tag" ]] || {
@@ -32,7 +33,7 @@ release_notes="${repo_root}/docs/releases/${release_version}.md"
 origin="$(git -C "$repo_root" remote get-url origin)"
 [[ "$origin" == *"${public_repository}"* ]] || { print -u2 "unexpected origin: $origin"; exit 1; }
 git -C "$repo_root" rev-parse --verify "refs/tags/${tag}" >/dev/null
-[[ -s "$dmg_path" && -s "$appcast_candidate" && -s "$release_notes" ]] || {
+[[ -s "$dmg_path" && -s "$appcast_candidate" && -s "$release_notes_candidate" && -s "$release_notes" ]] || {
   print -u2 "candidate DMG, appcast, or release notes are missing"
   exit 1
 }
@@ -57,11 +58,15 @@ curl --fail --location --silent --show-error --retry 5 --retry-all-errors \
   --output /dev/null "$asset_url"
 
 cp "$appcast_candidate" "${repo_root}/appcast.xml"
-git -C "$repo_root" add appcast.xml
+cp "$release_notes_candidate" "${repo_root}/QuotaGlance.md"
+git -C "$repo_root" add appcast.xml QuotaGlance.md
 git -C "$repo_root" commit -m "Publish Sparkle appcast for ${tag}"
 git -C "$repo_root" push origin main
 
 feed_url="https://raw.githubusercontent.com/${public_repository}/main/appcast.xml"
+release_notes_url="https://raw.githubusercontent.com/${public_repository}/main/QuotaGlance.md"
 curl --fail --location --silent --show-error --retry 5 --retry-all-errors "$feed_url" | \
   rg -q "releases/download/${tag}/QuotaGlance.dmg"
+curl --fail --location --silent --show-error --retry 5 --retry-all-errors \
+  --output /dev/null "$release_notes_url"
 print "Published ${tag}: asset first, then the verified Sparkle appcast."
