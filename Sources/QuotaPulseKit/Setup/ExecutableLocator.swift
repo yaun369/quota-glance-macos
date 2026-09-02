@@ -198,6 +198,7 @@ final class LoginShellLookup: @unchecked Sendable {
     /// than requiring a relaunch.
     private let negativeCacheInterval: TimeInterval
     private let spawn: @Sendable (String, [String], TimeInterval) -> String?
+    private let shells: [String]
 
     private let lock = NSLock()
     private var results: [String: (value: String?, resolvedAt: Date)] = [:]
@@ -208,12 +209,14 @@ final class LoginShellLookup: @unchecked Sendable {
     init(
         timeout: TimeInterval = 5,
         negativeCacheInterval: TimeInterval = 60,
+        shells: [String]? = nil,
         spawn: @escaping @Sendable (String, [String], TimeInterval) -> String? = {
             LoginShellLookup.runCapturingOutput(executable: $0, arguments: $1, timeout: $2)
         }
     ) {
         self.timeout = timeout
         self.negativeCacheInterval = negativeCacheInterval
+        self.shells = shells ?? Self.defaultShells()
         self.spawn = spawn
     }
 
@@ -277,18 +280,6 @@ final class LoginShellLookup: @unchecked Sendable {
     /// Runs `body` in a login shell and returns what it printed, provided
     /// `isValid` accepts it.
     private func askLoginShell(_ body: String, isValid: (String) -> Bool) -> String? {
-        var shells: [String] = []
-        if let shell = ProcessInfo.processInfo.environment["SHELL"] {
-            shells.append(shell)
-        }
-        // `$SHELL` is unset for a GUI process on some setups, and a shell that
-        // does not understand `-lic` (nushell, xonsh) would fail the probe
-        // outright. zsh is the macOS default and reads the same startup files
-        // the user's own shell would.
-        if !shells.contains("/bin/zsh") {
-            shells.append("/bin/zsh")
-        }
-
         for shell in shells {
             guard FileManager.default.isExecutableFile(atPath: shell) else { continue }
             // `-l` sources the login files (`.zprofile`, `.bash_profile`) and
@@ -305,6 +296,21 @@ final class LoginShellLookup: @unchecked Sendable {
             return value
         }
         return nil
+    }
+
+    private static func defaultShells() -> [String] {
+        var shells: [String] = []
+        if let shell = ProcessInfo.processInfo.environment["SHELL"] {
+            shells.append(shell)
+        }
+        // `$SHELL` is unset for a GUI process on some setups, and a shell that
+        // does not understand `-lic` (nushell, xonsh) would fail the probe
+        // outright. zsh is the macOS default and reads the same startup files
+        // the user's own shell would.
+        if !shells.contains("/bin/zsh") {
+            shells.append("/bin/zsh")
+        }
+        return shells
     }
 
     static let marker = "QUOTAPULSE_PROBE"

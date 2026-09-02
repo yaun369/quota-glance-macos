@@ -31,7 +31,11 @@ final class LoopbackCallbackServerTests: XCTestCase {
         XCTAssertEqual(query["code"], "auth-code-1")
         XCTAssertEqual(query["state"], "state-1")
         XCTAssertEqual(response.statusCode, 200)
-        XCTAssertTrue(response.body.contains("登录成功"))
+        XCTAssertTrue(
+            response.body.contains(
+                QuotaL10n.string("login.page.success.title", "Signed in")
+            )
+        )
     }
 
     func testStartOnAFixedPortBindsExactlyThatPort() async throws {

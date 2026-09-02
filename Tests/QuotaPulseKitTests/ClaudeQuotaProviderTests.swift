@@ -62,7 +62,9 @@ final class ClaudeQuotaProviderTests: XCTestCase {
             // Both halves of this pairing are shown in the menu bar app, so
             // the status-line half uses the user-facing wording rather than
             // the English text `quota-cli` prints.
-            XCTAssertTrue(statusLineReason.contains("无法读取 Claude Code 用量缓存文件"))
+            let localizedProbe = QuotaError.cacheDecodeFailed("LOCALIZATION_PROBE").userFacingDescription
+            let localizedPrefix = localizedProbe.components(separatedBy: "LOCALIZATION_PROBE")[0]
+            XCTAssertTrue(statusLineReason.hasPrefix(localizedPrefix))
             XCTAssertTrue(oauthReason.contains("synthetic OAuth failure"))
         } catch {
             XCTFail("unexpected error: \(error)")

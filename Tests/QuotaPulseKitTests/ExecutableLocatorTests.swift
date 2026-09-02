@@ -160,7 +160,7 @@ final class ExecutableLocatorTests: XCTestCase {
 
     func testCachesAResolvedPathSoTheMainActorCanReadItWithoutSpawning() {
         let spawns = LockedCounter()
-        let lookup = LoginShellLookup(spawn: { _, _, _ in
+        let lookup = LoginShellLookup(shells: ["/bin/zsh"], spawn: { _, _, _ in
             spawns.increment()
             return self.markedOutput("/bin/ls")
         })
@@ -175,7 +175,7 @@ final class ExecutableLocatorTests: XCTestCase {
     /// next refresh, not only after a relaunch.
     func testRetriesAfterAFailedLookupExpires() {
         let spawns = LockedCounter()
-        let lookup = LoginShellLookup(negativeCacheInterval: 0, spawn: { _, _, _ in
+        let lookup = LoginShellLookup(negativeCacheInterval: 0, shells: ["/bin/zsh"], spawn: { _, _, _ in
             spawns.increment()
             return spawns.value == 1 ? "" : self.markedOutput("/bin/ls")
         })
@@ -186,7 +186,7 @@ final class ExecutableLocatorTests: XCTestCase {
 
     func testDoesNotRetryWhileTheFailedLookupIsStillCached() {
         let spawns = LockedCounter()
-        let lookup = LoginShellLookup(negativeCacheInterval: 600, spawn: { _, _, _ in
+        let lookup = LoginShellLookup(negativeCacheInterval: 600, shells: ["/bin/zsh"], spawn: { _, _, _ in
             spawns.increment()
             return ""
         })
