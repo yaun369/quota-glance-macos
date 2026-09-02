@@ -1,9 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
-  <channel>
-    <title>QuotaGlance updates</title>
-    <link>https://github.com/yaun369/quota-glance-macos/releases</link>
-    <description>Signed updates for the directly distributed macOS app.</description>
-    <language>en</language>
-  </channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>QuotaGlance updates</title>
+        <link>https://github.com/yaun369/quota-glance-macos/releases</link>
+        <description>Signed updates for the directly distributed macOS app.</description>
+        <language>en</language>
+        <item>
+            <title>0.3.0</title>
+            <pubDate>Wed, 02 Sep 2026 17:50:06 +0800</pubDate>
+            <link>https://github.com/yaun369/quota-glance-macos/releases/tag/v0.3.0</link>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>0.3.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>https://raw.githubusercontent.com/yaun369/quota-glance-macos/main/QuotaGlance.md</sparkle:releaseNotesLink>
+            <enclosure url="https://github.com/yaun369/quota-glance-macos/releases/download/v0.3.0/QuotaGlance.dmg" length="4827651" type="application/octet-stream" sparkle:edSignature="qHJkfLIk7o9YpuPGmwsNobqovye/7sU5gYv9ZRJs/f8b8zVoR4X/ecrfze/NGe0Nx+zBxvfSyftgifiJNkKRDA=="/>
+        </item>
+    </channel>
 </rss>
