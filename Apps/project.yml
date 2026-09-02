@@ -1,0 +1,3 @@
+include:
+  - ProjectSpecs/base.yml
+  - ProjectSpecs/macos.yml

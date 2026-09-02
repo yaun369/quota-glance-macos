@@ -1,0 +1,21 @@
+name: QuotaPulse
+options:
+  createIntermediateGroups: true
+  bundleIdPrefix: dev.yuanmeng.quotapulse
+  developmentLanguage: en
+  knownRegions:
+    - en
+    - zh-Hans
+    - Base
+
+settings:
+  base:
+    SWIFT_EMIT_LOC_STRINGS: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+
+packages:
+  QuotaPulseKit:
+    path: ../..
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    exactVersion: 2.9.6

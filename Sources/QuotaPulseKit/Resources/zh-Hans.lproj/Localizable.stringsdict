@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  中文没有复数变化，每个单位只有 other 一类。仍然写成 stringsdict 而不是塞回
+  Localizable.strings，是为了让「倒计时和新鲜度的所有变体都在 stringsdict 里」
+  成为一条无例外的规则——下一个语言进来时，照着改的人不用先去两个文件里找。
+
+  数字和中文单位之间的空格是规范 §6 要求的，只在这一份表里成立。
+-->
+<plist version="1.0">
+<dict>
+    <key>quota.reset.daysHoursMinutes</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@days@ %#@hours@ %#@minutes@后重置</string>
+        <key>days</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>other</key><string>%1$lld 天</string>
+        </dict>
+        <key>hours</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>other</key><string>%2$lld 小时</string>
+        </dict>
+        <key>minutes</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>other</key><string>%3$lld 分钟</string>
+        </dict>
+    </dict>
+
+    <key>quota.reset.hoursMinutes</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@hours@ %#@minutes@后重置</string>
+        <key>hours</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>other</key><string>%1$lld 小时</string>
+        </dict>
+        <key>minutes</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>other</key><string>%2$lld 分钟</string>
+        </dict>
+    </dict>
+
+    <key>quota.reset.minutes</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@minutes@后重置</string>
+        <key>minutes</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>other</key><string>%1$lld 分钟</string>
+        </dict>
+    </dict>
+
+    <key>quota.freshness.minutes</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@minutes@前更新</string>
+        <key>minutes</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>other</key><string>%1$lld 分钟</string>
+        </dict>
+    </dict>
+
+    <key>quota.freshness.hours</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@hours@前更新</string>
+        <key>hours</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>other</key><string>%1$lld 小时</string>
+        </dict>
+    </dict>
+</dict>
+</plist>

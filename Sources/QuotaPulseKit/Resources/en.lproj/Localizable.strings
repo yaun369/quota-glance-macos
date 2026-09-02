@@ -1,0 +1,179 @@
+/* QuotaPulseKit — English (development language).
+
+   Plural and multi-unit countdown strings live in Localizable.stringsdict
+   next to this file; they are keyed "quota.reset.*" and must not be added
+   here as well. */
+
+/* MARK: - QuotaFormatting */
+
+"quota.value.none" = "No data yet";
+"quota.value.dash" = "--";
+"quota.remaining.percent" = "Remaining %lld%%";
+"quota.utilization.percent" = "Window utilization %lld%%";
+"quota.window.session" = "5 hours";
+"quota.window.weekly" = "Weekly";
+"quota.reset.unknown" = "Reset time unknown";
+"quota.reset.passed" = "Should have reset";
+"quota.freshness.justNow" = "Updated just now";
+"quota.sync.at" = "Synced at %@";
+"quota.failure.checkNetwork" = "%@ Check your network connection and try again.";
+
+/* MARK: - QuotaError (menu bar wording; every case ends in a next step) */
+
+"error.executableNotFound" = "The %@ command line tool was not found. Install it and confirm it runs in a terminal.";
+"error.appServerLaunchFailed" = "Could not start codex app-server: %@. Confirm the codex command line runs in a terminal, or tap Sign in with ChatGPT to read your quota directly — that route needs no command line tool.";
+"error.appServerExited" = "codex app-server exited unexpectedly (status %@). If you have never signed in to Codex, run codex login in a terminal first.";
+"error.requestTimedOut" = "Timed out waiting for codex app-server. QuotaGlance will retry shortly.";
+"error.invalidResponse" = "Received an unrecognized response: %@. QuotaGlance will retry shortly; if this keeps happening, update to the latest version.";
+"error.noCachedDataYet" = "No Claude Code usage has been captured yet. Finish the status line setup, then send one request in any Claude Code session.";
+"error.cacheDecodeFailed" = "Could not read the Claude Code usage cache file: %@. Send another request in any Claude Code session and the cache will be rebuilt.";
+"error.claudeOAuthFallbackFailed" = "Could not read Claude Code usage — both collection paths failed. Status line: %1$@  OAuth: %2$@  Sign in to Claude again, or run the status line setup once more.";
+"error.statusLineAlreadyConfigured" = "~/.claude/settings.json already has a different statusLine command. Choose Overwrite to let QuotaGlance take it over.";
+"error.statusLineHelperUnavailable" = "The bundled Claude status line helper is missing or cannot run. Please reinstall QuotaGlance.";
+"error.codexDirectFallbackFailed" = "Could not read Codex usage — both collection paths failed. Account direct: %1$@  codex CLI: %2$@  Sign in to ChatGPT again, or confirm the codex command line runs in a terminal.";
+"error.codexNotConnected" = "Codex is not connected. Tap Sign in with ChatGPT to authorize and reading will resume; if you have the codex command line installed, running codex login in a terminal works too.";
+
+/* MARK: - Collection sources */
+
+"source.accountDirect" = "Account direct";
+"source.warning.accountDirect" = "Account direct: %@";
+"source.warning.oauthUsage" = "OAuth Usage: %@";
+"source.statusLine.noData" = "No status line data available";
+
+/* MARK: - QuotaSetupIssue (macOS menu bar guidance) */
+
+"setup.codexNotConnected.title" = "Codex is not connected";
+"setup.codexNotConnected.message" = "Sign in with your ChatGPT account to read your quota directly — no command line tool required. If you already have the codex command line, running codex login in a terminal works too.";
+"setup.claudeStatusLineNotInstalled.title" = "Claude Code status line is not set up";
+"setup.claudeStatusLineNotInstalled.message" = "QuotaGlance reads your quota through the Claude Code status line. The button below sets it up automatically, and your existing ~/.claude/settings.json is backed up first.";
+"setup.claudeStatusLineTaken.title" = "Claude Code status line is used by another command";
+"setup.claudeStatusLineTaken.message" = "It is currently set to %@. QuotaGlance can only read your quota after overwriting it; the existing setting is backed up to ~/.agent-quota first.";
+"setup.claudeAwaitingFirstReading.title" = "Waiting for Claude Code's first report";
+"setup.claudeAwaitingFirstReading.message" = "Setup is complete. Send one request in any Claude Code session and your quota will appear here.";
+
+/* MARK: - Persistent surfaces */
+
+"surface.homeScreenWidget.title" = "Home Screen widget";
+"surface.lockScreenWidget.title" = "Lock Screen widget";
+"surface.watchComplication.title" = "Watch complication";
+"surface.macMenuBar.title" = "Mac menu bar";
+
+"surface.homeScreenWidget.promise" = "See what is left the moment you reach the Home Screen, without opening the app.";
+"surface.lockScreenWidget.promise" = "There the instant you raise your phone — the fastest of the four.";
+"surface.watchComplication.promise" = "Glance at your wrist without taking your hands off the keyboard.";
+"surface.macMenuBar.promise" = "Right in the menu bar of the screen you write code on. Nothing is closer.";
+
+"surface.homeScreenWidget.step1" = "Go to the Home Screen and press and hold an empty spot until the icons jiggle.";
+"surface.homeScreenWidget.step2" = "Tap + in the top-left corner and search for QuotaGlance.";
+"surface.homeScreenWidget.step3" = "Pick a size and tap Add Widget.";
+"surface.lockScreenWidget.step1" = "Lock your phone, press and hold the Lock Screen, then tap Customize and Lock Screen.";
+"surface.lockScreenWidget.step2" = "Tap the widget area below the clock.";
+"surface.lockScreenWidget.step3" = "Find QuotaGlance in the list and tap it to add it.";
+"surface.watchComplication.step1" = "On your Apple Watch, press and hold the current watch face and tap Edit.";
+"surface.watchComplication.step2" = "Swipe to the complications page and tap a slot.";
+"surface.watchComplication.step3" = "Choose QuotaGlance from the list.";
+"surface.macMenuBar.step1" = "Download and open QuotaGlance on your Mac.";
+"surface.macMenuBar.step2" = "It lives in the menu bar; sign in once and you are done.";
+"surface.macMenuBar.step3" = "Use the same iCloud account on your Mac and iPhone and the two stay in sync.";
+"surface.watchComplication.installStep" = "First install QuotaGlance on your watch from the Watch app on your iPhone.";
+
+/* MARK: - iCloud sync */
+
+"sync.iCloudUnavailable" = "iCloud is unavailable. Sign in to iCloud in System Settings and allow QuotaGlance to use it.";
+"sync.networkUnavailable" = "The network is unavailable. QuotaGlance will retry automatically.";
+
+/* MARK: - Account direct */
+
+"accountDirect.credentialExpired" = "Your sign-in has expired. Please sign in again.";
+"accountDirect.credentialIncomplete" = "Your sign-in details are incomplete. Sign out and sign in again.";
+
+/* MARK: - Claude OAuth usage */
+
+"claudeUsage.unauthorized" = "The Claude OAuth request was not authorized. Run Claude Code and sign in again.";
+"claudeUsage.forbidden.reason" = "The Claude OAuth credential is not allowed to read usage: %@";
+"claudeUsage.forbidden" = "The Claude OAuth credential is not allowed to read usage. Sign in again in Claude Code.";
+"claudeUsage.rateLimited.retryAfter" = "The Claude OAuth usage endpoint is rate limiting requests. Try again after %@.";
+"claudeUsage.rateLimited" = "The Claude OAuth usage endpoint is rate limiting requests. Try again later.";
+"claudeUsage.httpStatus.reason" = "The Claude OAuth usage endpoint returned HTTP %1$@: %2$@";
+"claudeUsage.httpStatus" = "The Claude OAuth usage endpoint returned HTTP %@.";
+"claudeUsage.invalidResponse" = "The Claude OAuth usage endpoint returned invalid data: %@";
+"claudeUsage.transportFailed" = "The Claude OAuth usage request failed: %@";
+
+/* MARK: - Codex usage */
+
+"codexUsage.unauthorized" = "Your Codex sign-in is no longer valid. Please sign in again.";
+"codexUsage.forbidden.reason" = "Your Codex account is not allowed to read usage: %@";
+"codexUsage.forbidden" = "Your Codex account is not allowed to read usage. Please sign in again.";
+"codexUsage.rateLimited.retryAfter" = "The Codex usage endpoint is rate limiting requests. Try again after %@.";
+"codexUsage.rateLimited" = "The Codex usage endpoint is rate limiting requests. Try again later.";
+"codexUsage.httpStatus.reason" = "The Codex usage endpoint returned HTTP %1$@: %2$@";
+"codexUsage.httpStatus" = "The Codex usage endpoint returned HTTP %@.";
+"codexUsage.invalidResponse" = "The Codex usage endpoint returned invalid data: %@";
+"codexUsage.transportFailed" = "The Codex usage request failed: %@";
+
+/* MARK: - Response parsing reasons (interpolated into the messages above) */
+
+"reason.missingHTTPResponse" = "no HTTP response";
+"reason.claudeEndpointNotAnthropic" = "the OAuth endpoint is not an Anthropic HTTPS address";
+"reason.claudeWindowsMissing" = "five_hour and seven_day quotas are both missing";
+"reason.claudeUtilizationOutOfRange" = "utilization is outside 0...100";
+"reason.claudeResetsAtUnparsable" = "resets_at could not be parsed";
+"reason.codexEndpointNotChatGPT" = "the usage endpoint is not a ChatGPT HTTPS address";
+"reason.codexWindowsMissing" = "primary_window and secondary_window quotas are both missing";
+"reason.codexUsedPercentOutOfRange" = "used_percent is outside 0...100";
+"reason.missingAccessToken" = "the response has no access_token";
+
+/* MARK: - OAuth login */
+
+"login.portsBusy.codex" = "Ports 1455 and 1457 are both in use. Close whatever is using them — another QuotaGlance instance or codex login — and try again.";
+"login.portBusy.claude" = "Port 54545 is already in use. Close whatever is using it and try again.";
+"login.portBusy" = "Port %@ is already in use. Close whatever is using it and try again.";
+"login.portUnavailable" = "Could not listen on the sign-in callback port on this machine.";
+"login.serverNotRunning" = "The local callback server has not started.";
+"login.cancelled" = "Sign-in cancelled.";
+"login.timedOut" = "Timed out waiting for sign-in authorization. Please try again.";
+"login.stateMismatch" = "The sign-in callback failed validation. Please start the sign-in again.";
+"login.denied.reason" = "Sign-in denied: %@";
+"login.denied" = "Sign-in denied.";
+"login.missingCode" = "The sign-in callback is missing its authorization code. Please try again.";
+"login.exchangeFailed" = "Sign-in failed: %@";
+"login.missingAccount" = "The sign-in response has incomplete account details. Please try again.";
+"login.transportFailed" = "The sign-in request failed: %@";
+"login.invalidResponse" = "The sign-in response was invalid: %@";
+"login.badCallback" = "Received an unrecognized callback request: %@";
+
+"login.page.success.title" = "Signed in";
+"login.page.success.body" = "You can close this page and go back to QuotaGlance.";
+"login.page.failure.title" = "Sign-in failed";
+"login.page.failure.body" = "Please go back to QuotaGlance and try again.";
+
+/* MARK: - Token refresh and storage */
+
+"token.notSignedIn" = "Not signed in. Sign in to your account in QuotaGlance first.";
+"token.expired.reason" = "Your sign-in has expired: %@";
+"token.expired" = "Your sign-in has expired. Please sign in again.";
+"token.transportFailed" = "The request to refresh your sign-in failed: %@";
+"token.httpStatus.reason" = "Could not refresh your sign-in (HTTP %1$@): %2$@";
+"token.httpStatus" = "Could not refresh your sign-in (HTTP %@).";
+"token.invalidResponse" = "The sign-in refresh response was invalid: %@";
+"token.saveFailed" = "Could not save your sign-in: %@";
+"token.loadFailed" = "Could not read your saved sign-in: %@";
+"token.keychainFailed" = "Keychain access failed (status %@).";
+"token.decodeFailed" = "Could not decode the sign-in token.";
+"token.payloadInvalid" = "The sign-in token payload was invalid: %@";
+
+/* MARK: - Failure recovery actions */
+
+"failure.action.retry" = "Use Retry below to try again.";
+"failure.action.reconnect" = "Use Sign in again below to reconnect.";
+"failure.action.update" = "Use Check for Updates below, install any available update, then retry.";
+"failure.action.settings" = "Use Open System Settings below, allow access, then retry.";
+
+/* MARK: - Claude Code OAuth credentials */
+
+"claudeCredentials.notFound" = "No usable Claude OAuth credential was found. Sign in to your Claude account in the app.";
+"claudeCredentials.malformed" = "The Claude Code OAuth credential is malformed.";
+"claudeCredentials.missingAccessToken" = "The Claude Code OAuth credential has no access token.";
+"claudeCredentials.expired" = "The Claude Code OAuth access token has expired. Run Claude Code or sign in again, then refresh.";
+"claudeCredentials.missingScope" = "The Claude Code OAuth credential is missing the user:profile scope. Sign in again in Claude Code.";
+"claudeCredentials.readFailed" = "Could not read the Claude Code OAuth credential file: %@";

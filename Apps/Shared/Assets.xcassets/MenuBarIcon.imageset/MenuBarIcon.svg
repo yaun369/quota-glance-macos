@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+  <!--
+    Solid silhouette (disc + Q tail) with the terminal prompt knocked out.
+    One path, nonzero fill-rule: the solid subpaths are wound clockwise so they
+    union, the glyph subpaths are wound counter-clockwise so they punch holes.
+  -->
+  <path fill="#000000" d="
+    M 9 1.2
+    A 7.8 7.8 0 1 1 9 16.8
+    A 7.8 7.8 0 1 1 9 1.2
+    Z
+
+    M 13.772 12.428
+    L 16.772 15.428
+    A 0.95 0.95 0 0 1 15.428 16.772
+    L 12.428 13.772
+    Z
+
+    M 6.572 4.828
+    A 0.95 0.95 0 0 0 5.228 6.172
+    L 7.657 8.6
+    L 5.228 11.028
+    A 0.95 0.95 0 0 0 6.572 12.372
+    L 9.672 9.272
+    A 0.95 0.95 0 0 0 9.672 7.928
+    Z
+
+    M 11.15 12.45
+    L 13.15 12.45
+    A 0.95 0.95 0 0 0 13.15 10.55
+    L 11.15 10.55
+    A 0.95 0.95 0 0 0 11.15 12.45
+    Z
+  "/>
+</svg>

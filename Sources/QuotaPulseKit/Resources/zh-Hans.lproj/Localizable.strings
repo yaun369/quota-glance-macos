@@ -1,0 +1,182 @@
+/* QuotaPulseKit —— 简体中文。
+
+   文案规范见 docs/码量 UI 设计风格规范.md §6：
+   - 永远说「剩余」，绝不说「已用」（唯一例外是 §6.1 的「利用率」）
+   - 中英文之间空一格，这条规则只对本文件生效，英文表里不适用
+   - 错误文案必须给出下一步动作，不只是报错
+
+   倒计时与「几分钟前更新」的复数变体在同目录的 Localizable.stringsdict。 */
+
+/* MARK: - QuotaFormatting */
+
+"quota.value.none" = "暂无数据";
+"quota.value.dash" = "--";
+"quota.remaining.percent" = "剩余 %lld%%";
+"quota.utilization.percent" = "本窗口利用率 %lld%%";
+"quota.window.session" = "5 小时";
+"quota.window.weekly" = "每周";
+"quota.reset.unknown" = "重置时间未知";
+"quota.reset.passed" = "预计已重置";
+"quota.freshness.justNow" = "刚刚更新";
+"quota.sync.at" = "同步于 %@";
+"quota.failure.checkNetwork" = "%@ 请检查网络连接后重试。";
+
+/* MARK: - QuotaError（菜单栏用词，每一条都以「下一步做什么」结尾） */
+
+"error.executableNotFound" = "没有找到 %@ 命令行工具。请先安装它，并确认能在终端里直接运行。";
+"error.appServerLaunchFailed" = "无法启动 codex app-server：%@。确认 codex 命令行能在终端里直接运行；或者点「登录 ChatGPT 账号」改用账号直连，那条路不需要命令行。";
+"error.appServerExited" = "codex app-server 意外退出（状态码 %@）。如果还没登录过 Codex，请先在终端运行 codex login。";
+"error.requestTimedOut" = "等待 codex app-server 响应超时，稍后会自动重试。";
+"error.invalidResponse" = "收到无法识别的响应：%@。稍后会自动重试；如果一直这样，请更新「码量」到最新版本。";
+"error.noCachedDataYet" = "还没有采集到 Claude Code 用量。完成状态栏配置后，在任意 Claude Code 会话里发送一次请求即可。";
+"error.cacheDecodeFailed" = "无法读取 Claude Code 用量缓存文件：%@。在任意 Claude Code 会话里再发送一次请求，缓存会重新生成。";
+"error.claudeOAuthFallbackFailed" = "读取 Claude Code 用量失败，两条采集路径都没走通。状态栏：%1$@　OAuth：%2$@　请重新登录 Claude 账号，或重新完成一次状态栏配置。";
+"error.statusLineAlreadyConfigured" = "~/.claude/settings.json 里已经配置了另一个 statusLine 命令。需要「码量」接管时，请选择覆盖配置。";
+"error.statusLineHelperUnavailable" = "App 内置的 Claude 状态栏组件缺失或无法执行，请重新安装「码量」。";
+"error.codexDirectFallbackFailed" = "读取 Codex 用量失败，两条采集路径都没走通。账号直连：%1$@　codex CLI：%2$@　请重新登录 ChatGPT 账号，或确认 codex 命令行能在终端里运行。";
+"error.codexNotConnected" = "尚未连接 Codex。点击「登录 ChatGPT 账号」完成授权即可恢复读取；已安装 codex 命令行的话，在终端运行一次 codex login 也可以。";
+
+/* MARK: - 采集来源 */
+
+"source.accountDirect" = "账号直连";
+"source.warning.accountDirect" = "账号直连：%@";
+"source.warning.oauthUsage" = "OAuth Usage：%@";
+"source.statusLine.noData" = "没有可用的 StatusLine 数据";
+
+/* MARK: - QuotaSetupIssue（macOS 菜单栏引导） */
+
+"setup.codexNotConnected.title" = "尚未连接 Codex";
+"setup.codexNotConnected.message" = "登录你的 ChatGPT 账号即可直接读取额度，不需要安装命令行工具。已经装过 codex 命令行的话，在终端运行一次 codex login 也可以。";
+"setup.claudeStatusLineNotInstalled.title" = "尚未配置 Claude Code 状态栏";
+"setup.claudeStatusLineNotInstalled.message" = "「码量」通过 Claude Code 的状态栏读取额度。点下面的按钮就能自动完成配置，现有的 ~/.claude/settings.json 会先备份一份。";
+"setup.claudeStatusLineTaken.title" = "Claude Code 状态栏已被其它命令占用";
+"setup.claudeStatusLineTaken.message" = "当前配置的是 %@。覆盖后「码量」才能读到额度，原有设置会先备份到 ~/.agent-quota。";
+"setup.claudeAwaitingFirstReading.title" = "等待 Claude Code 首次上报";
+"setup.claudeAwaitingFirstReading.message" = "配置已完成。请在任意 Claude Code 会话里发送一次请求，额度就会出现在这里。";
+
+/* MARK: - 常驻位置 */
+
+"surface.homeScreenWidget.title" = "主屏幕小组件";
+"surface.lockScreenWidget.title" = "锁屏小组件";
+"surface.watchComplication.title" = "表盘复杂功能";
+"surface.macMenuBar.title" = "Mac 菜单栏";
+
+"surface.homeScreenWidget.promise" = "回到主屏幕就能看到还剩多少，不用打开 App。";
+"surface.lockScreenWidget.promise" = "抬手亮屏就看到，是四个位置里最快的一个。";
+"surface.watchComplication.promise" = "写代码时手不离键盘也能瞄一眼手腕。";
+"surface.macMenuBar.promise" = "额度就在写代码的那块屏幕的顶栏上，离你最近。";
+
+"surface.homeScreenWidget.step1" = "回到主屏幕，长按空白处直到图标开始抖动。";
+"surface.homeScreenWidget.step2" = "点左上角的「+」，搜索「码量」。";
+"surface.homeScreenWidget.step3" = "选一个尺寸，点「添加小组件」。";
+"surface.lockScreenWidget.step1" = "锁屏后长按锁屏画面，点「自定义」→「锁定屏幕」。";
+"surface.lockScreenWidget.step2" = "点时间下方的小组件区域。";
+"surface.lockScreenWidget.step3" = "在列表里找到「码量」，点一下加进去。";
+"surface.watchComplication.step1" = "在 Apple Watch 上长按当前表盘，点「编辑」。";
+"surface.watchComplication.step2" = "划到复杂功能那一页，点一个位置。";
+"surface.watchComplication.step3" = "在列表里选「码量」。";
+"surface.macMenuBar.step1" = "在 Mac 上下载并打开「码量」。";
+"surface.macMenuBar.step2" = "它会常驻在菜单栏，登录一次账号即可。";
+"surface.macMenuBar.step3" = "Mac 和 iPhone 用同一个 iCloud 账号，两端数据自动同步。";
+"surface.watchComplication.installStep" = "先在 iPhone 的「Watch」App 里，把「码量」装到手表上。";
+
+/* MARK: - iCloud 同步 */
+
+"sync.iCloudUnavailable" = "无法访问 iCloud。请在系统设置里登录 iCloud 账号，并允许「码量」使用 iCloud。";
+"sync.networkUnavailable" = "网络不可用，稍后会自动重试。";
+
+/* MARK: - 账号直连 */
+
+"accountDirect.credentialExpired" = "登录已失效，请重新登录。";
+"accountDirect.credentialIncomplete" = "登录信息不完整，请退出后重新登录。";
+
+/* MARK: - Claude OAuth 用量 */
+
+"claudeUsage.unauthorized" = "Claude OAuth 请求未授权；请运行 Claude Code 并重新登录。";
+"claudeUsage.forbidden.reason" = "Claude OAuth 没有读取额度的权限：%@";
+"claudeUsage.forbidden" = "Claude OAuth 没有读取额度的权限；请在 Claude Code 中重新登录。";
+"claudeUsage.rateLimited.retryAfter" = "Claude OAuth Usage 接口请求过于频繁，请在 %@ 后重试。";
+"claudeUsage.rateLimited" = "Claude OAuth Usage 接口请求过于频繁，请稍后重试。";
+"claudeUsage.httpStatus.reason" = "Claude OAuth Usage 接口返回 HTTP %1$@：%2$@";
+"claudeUsage.httpStatus" = "Claude OAuth Usage 接口返回 HTTP %@。";
+"claudeUsage.invalidResponse" = "Claude OAuth Usage 返回的数据无效：%@";
+"claudeUsage.transportFailed" = "Claude OAuth Usage 网络请求失败：%@";
+
+/* MARK: - Codex 用量 */
+
+"codexUsage.unauthorized" = "Codex 账号登录已失效，请重新登录。";
+"codexUsage.forbidden.reason" = "Codex 账号没有读取额度的权限：%@";
+"codexUsage.forbidden" = "Codex 账号没有读取额度的权限，请重新登录。";
+"codexUsage.rateLimited.retryAfter" = "Codex 用量接口请求过于频繁，请在 %@ 后重试。";
+"codexUsage.rateLimited" = "Codex 用量接口请求过于频繁，请稍后重试。";
+"codexUsage.httpStatus.reason" = "Codex 用量接口返回 HTTP %1$@：%2$@";
+"codexUsage.httpStatus" = "Codex 用量接口返回 HTTP %@。";
+"codexUsage.invalidResponse" = "Codex 用量接口返回的数据无效：%@";
+"codexUsage.transportFailed" = "Codex 用量接口网络请求失败：%@";
+
+/* MARK: - 响应解析原因（会被插进上面那些消息里） */
+
+"reason.missingHTTPResponse" = "缺少 HTTP 响应";
+"reason.claudeEndpointNotAnthropic" = "OAuth endpoint 不是 Anthropic HTTPS 地址";
+"reason.claudeWindowsMissing" = "缺少 five_hour 和 seven_day 额度";
+"reason.claudeUtilizationOutOfRange" = "utilization 超出 0...100";
+"reason.claudeResetsAtUnparsable" = "无法解析 resets_at";
+"reason.codexEndpointNotChatGPT" = "usage endpoint 不是 ChatGPT HTTPS 地址";
+"reason.codexWindowsMissing" = "缺少 primary_window 和 secondary_window 额度";
+"reason.codexUsedPercentOutOfRange" = "used_percent 超出 0...100";
+"reason.missingAccessToken" = "响应缺少 access_token";
+
+/* MARK: - OAuth 登录 */
+
+"login.portsBusy.codex" = "端口 1455/1457 都被占用，请关闭占用它们的程序（可能是另一个「码量」实例或 codex login）后重试。";
+"login.portBusy.claude" = "端口 54545 已被占用，请关闭占用它的程序后重试。";
+"login.portBusy" = "端口 %@ 已被占用，请关闭占用它的程序后重试。";
+"login.portUnavailable" = "无法在本机监听登录回调端口。";
+"login.serverNotRunning" = "本地回调服务尚未启动。";
+"login.cancelled" = "登录已取消。";
+"login.timedOut" = "等待登录授权超时，请重试。";
+"login.stateMismatch" = "登录回调校验失败，请重新发起登录。";
+"login.denied.reason" = "登录被拒绝：%@";
+"login.denied" = "登录被拒绝。";
+"login.missingCode" = "登录回调缺少授权码，请重试。";
+"login.exchangeFailed" = "登录失败：%@";
+"login.missingAccount" = "登录返回的账号信息不完整，请重试。";
+"login.transportFailed" = "登录时网络请求失败：%@";
+"login.invalidResponse" = "登录返回的数据无效：%@";
+"login.badCallback" = "收到无法识别的回调请求：%@";
+
+"login.page.success.title" = "登录成功";
+"login.page.success.body" = "可以关闭这个页面，回到「码量」继续。";
+"login.page.failure.title" = "登录失败";
+"login.page.failure.body" = "请返回「码量」重试。";
+
+/* MARK: - 令牌刷新与存储 */
+
+"token.notSignedIn" = "尚未登录；请先在「码量」内登录账号。";
+"token.expired.reason" = "登录已失效：%@";
+"token.expired" = "登录已失效，请重新登录。";
+"token.transportFailed" = "刷新登录状态时网络请求失败：%@";
+"token.httpStatus.reason" = "刷新登录状态失败（HTTP %1$@）：%2$@";
+"token.httpStatus" = "刷新登录状态失败（HTTP %@）。";
+"token.invalidResponse" = "刷新登录状态返回的数据无效：%@";
+"token.saveFailed" = "无法保存登录状态：%@";
+"token.loadFailed" = "无法读取已保存的登录状态：%@";
+"token.keychainFailed" = "访问钥匙串失败（状态码 %@）。";
+"token.decodeFailed" = "无法解析登录返回的令牌。";
+"token.payloadInvalid" = "登录返回的令牌内容无效：%@";
+
+/* MARK: - 失败恢复动作 */
+
+"failure.action.retry" = "请点下方「重试」再次尝试。";
+"failure.action.reconnect" = "请点下方「重新登录」恢复连接。";
+"failure.action.update" = "请点下方「检查更新」，安装可用更新后重试。";
+"failure.action.settings" = "请点下方「打开系统设置」，允许访问后重试。";
+
+/* MARK: - Claude Code OAuth 凭据 */
+
+"claudeCredentials.notFound" = "未找到可用的 Claude OAuth 凭据；请在 App 内登录 Claude 账号。";
+"claudeCredentials.malformed" = "Claude Code OAuth 凭据格式无效。";
+"claudeCredentials.missingAccessToken" = "Claude Code OAuth 凭据中没有 access token。";
+"claudeCredentials.expired" = "Claude Code OAuth access token 已过期；请运行 Claude Code 或重新登录后再刷新。";
+"claudeCredentials.missingScope" = "Claude Code OAuth 凭据缺少 user:profile 权限；请在 Claude Code 中重新登录。";
+"claudeCredentials.readFailed" = "读取 Claude Code OAuth 凭据文件失败：%@";

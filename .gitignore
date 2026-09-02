@@ -1,0 +1,11 @@
+.DS_Store
+.build/
+.swiftpm/
+build/
+DerivedData/
+Apps/QuotaPulse.xcodeproj/
+Config/Local.xcconfig
+*.dSYM
+*.dSYM.zip
+*.ipa
+xcuserdata/

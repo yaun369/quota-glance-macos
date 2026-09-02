@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Every countdown and freshness string in the product, in the one place that
+  can inflect them. English needs "1 hour" and "2 hours" from the same call
+  site; assembling that in Swift is what UI 规范 §6 forbids, so each unit is a
+  plural variable here and QuotaFormatting only supplies the numbers.
+-->
+<plist version="1.0">
+<dict>
+    <key>quota.reset.daysHoursMinutes</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Resets in %#@days@ %#@hours@ %#@minutes@</string>
+        <key>days</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>one</key><string>%1$lld day</string>
+            <key>other</key><string>%1$lld days</string>
+        </dict>
+        <key>hours</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>one</key><string>%2$lld hour</string>
+            <key>other</key><string>%2$lld hours</string>
+        </dict>
+        <key>minutes</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>one</key><string>%3$lld minute</string>
+            <key>other</key><string>%3$lld minutes</string>
+        </dict>
+    </dict>
+
+    <key>quota.reset.hoursMinutes</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Resets in %#@hours@ %#@minutes@</string>
+        <key>hours</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>one</key><string>%1$lld hour</string>
+            <key>other</key><string>%1$lld hours</string>
+        </dict>
+        <key>minutes</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>one</key><string>%2$lld minute</string>
+            <key>other</key><string>%2$lld minutes</string>
+        </dict>
+    </dict>
+
+    <key>quota.reset.minutes</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Resets in %#@minutes@</string>
+        <key>minutes</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>one</key><string>%1$lld minute</string>
+            <key>other</key><string>%1$lld minutes</string>
+        </dict>
+    </dict>
+
+    <key>quota.freshness.minutes</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Updated %#@minutes@ ago</string>
+        <key>minutes</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>one</key><string>%1$lld minute</string>
+            <key>other</key><string>%1$lld minutes</string>
+        </dict>
+    </dict>
+
+    <key>quota.freshness.hours</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Updated %#@hours@ ago</string>
+        <key>hours</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key><string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key><string>lld</string>
+            <key>one</key><string>%1$lld hour</string>
+            <key>other</key><string>%1$lld hours</string>
+        </dict>
+    </dict>
+</dict>
+</plist>

@@ -1,0 +1,44 @@
+name: macOS CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Test Swift package
+        run: swift test
+      - name: Generate Mac-only project
+        working-directory: Apps
+        run: |
+          xcodegen generate
+          test "$(xcodebuild -project QuotaPulse.xcodeproj -list -json | jq '.project.targets | length')" -eq 2
+          ! xcodebuild -project QuotaPulse.xcodeproj -list | grep -E 'QuotaPulse(iOS|Watch|Widget)'
+      - name: Build unsigned universal release
+        run: |
+          xcodebuild \
+            -project Apps/QuotaPulse.xcodeproj \
+            -scheme QuotaPulseMac \
+            -configuration Release \
+            -destination 'generic/platform=macOS' \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            ARCHS='arm64 x86_64' \
+            ONLY_ACTIVE_ARCH=NO \
+            build
+      - name: Verify packaged products
+        run: |
+          app='build/DerivedData/Build/Products/Release/QuotaGlance.app'
+          test -d "$app/Contents/Frameworks/Sparkle.framework"
+          test -x "$app/Contents/MacOS/claude-status-helper"
+          lipo -archs "$app/Contents/MacOS/QuotaGlance" | grep arm64
+          lipo -archs "$app/Contents/MacOS/QuotaGlance" | grep x86_64

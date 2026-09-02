@@ -1,0 +1,1604 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+      "comment" : "The navigation bar's title is drawn in the content instead (§4.1).",
+      "shouldTranslate" : false
+    },
+    " · " : {
+      "comment" : "Separator between the utilization and the countdown on a card row.",
+      "shouldTranslate" : false
+    },
+    "--" : {
+      "comment" : "Shown where a percentage would be when there is no reading.",
+      "shouldTranslate" : false
+    },
+    "%@ · %@" : {
+      "comment" : "Hero card subtitle: provider · window, both already localized.",
+      "shouldTranslate" : false
+    },
+    "%@ %@" : {
+      "comment" : "Widget layout: provider name plus one already-localized phrase.",
+      "shouldTranslate" : false
+    },
+    "%@ %@ %@" : {
+      "comment" : "Widget layout: provider, window name, percentage.",
+      "shouldTranslate" : false
+    },
+    "%@ %@ %@ · %@ %@" : {
+      "comment" : "Inline widget layout: both windows, all parts already localized.",
+      "shouldTranslate" : false
+    },
+    "%@ The reading above is the last one that succeeded." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@以上是上一次成功读取的数据。"
+          }
+        }
+      }
+    },
+    "%@ weekly quota has reset" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 每周额度已重置"
+          }
+        }
+      }
+    },
+    "%@ weekly quota is almost out" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 每周额度所剩无几"
+          }
+        }
+      }
+    },
+    "%@ weekly quota is nearly gone" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 每周额度即将用尽"
+          }
+        }
+      }
+    },
+    "%@ weekly quota is running low" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 每周额度剩余不多"
+          }
+        }
+      }
+    },
+    "%@ weekly quota: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ weekly quota: %2$@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 每周额度当前%2$@"
+          }
+        }
+      }
+    },
+    "%@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@，%2$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+      "comment" : "The numeral in a guide step's disc.",
+      "shouldTranslate" : false
+    },
+    "%lld places added" : {
+      "comment" : "Settings row: how many always-on places the user has added. English inflects the noun, so it is a plural entry rather than a number glued to a fixed word.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld place added"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld places added"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已添加 %lld 处"
+          }
+        }
+      }
+    },
+    "A quota only helps while you can see it. Add one place and you will know what is left without opening the app." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "额度只有在你看得见的时候才有用。挑一个位置加上，之后不用打开 App 就知道还剩多少。"
+          }
+        }
+      }
+    },
+    "Account connected. Fetching the first reading…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已连接账号，正在获取第一次读数…"
+          }
+        }
+      }
+    },
+    "Account direct read failed" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "账号直连失败"
+          }
+        }
+      }
+    },
+    "Accounts" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "账号"
+          }
+        }
+      }
+    },
+    "Add ChatGPT account" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加 ChatGPT 账号"
+          }
+        }
+      }
+    },
+    "Add Claude account" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加 Claude 账号"
+          }
+        }
+      }
+    },
+    "Added" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已添加"
+          }
+        }
+      }
+    },
+    "After a successful collection the data syncs over through iCloud. Nothing more to set up here." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "采集成功后数据会经 iCloud 自动同步过来，这边不用再做任何设置。"
+          }
+        }
+      }
+    },
+    "AI coding quota" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 编程额度"
+          }
+        }
+      }
+    },
+    "Allow QuotaGlance in System Settings → General → Login Items, then return here." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请在「系统设置 → 通用 → 登录项」中允许「码量」，然后返回这里。"
+          }
+        }
+      }
+    },
+    "Always-on places" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "常驻位置"
+          }
+        }
+      }
+    },
+    "Automatically check for updates" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自动检查更新"
+          }
+        }
+      }
+    },
+    "Background App Refresh" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "后台 App 刷新"
+          }
+        }
+      }
+    },
+    "C" : {
+      "comment" : "Claude's initial on the circular complication.",
+      "shouldTranslate" : false
+    },
+    "Cancel" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        }
+      }
+    },
+    "Check for Updates…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "检查更新…"
+          }
+        }
+      }
+    },
+    "Choose which quota this widget or complication shows." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择要在小组件或表盘上显示的额度来源。"
+          }
+        }
+      }
+    },
+    "Claude" : {
+      "comment" : "Product name.",
+      "shouldTranslate" : false
+    },
+    "Claude quota" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claude 额度"
+          }
+        }
+      }
+    },
+    "Codex" : {
+      "comment" : "Product name.",
+      "shouldTranslate" : false
+    },
+    "Codex (ChatGPT account)" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codex（ChatGPT 账号）"
+          }
+        }
+      }
+    },
+    "Codex and Claude Code weekly quotas are watched separately. An alert is sent when a quota falls past its threshold; the 5-hour quota never sends one." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分别监控 Codex 和 Claude Code 的每周额度。额度向下越过对应阈值时发送提醒；5 小时额度不发送提醒。"
+          }
+        }
+      }
+    },
+    "Codex quota" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codex 额度"
+          }
+        }
+      }
+    },
+    "Collapse the steps" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "收起步骤"
+          }
+        }
+      }
+    },
+    "Come back here once you have added one and the status turns to Added on its own — nothing to confirm." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加好之后回到这里，状态会自动变成「已添加」，不用手动确认。"
+          }
+        }
+      }
+    },
+    "Connected" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已连接"
+          }
+        }
+      }
+    },
+    "Connected: %@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已连接：%@"
+          }
+        }
+      }
+    },
+    "Copied" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已复制"
+          }
+        }
+      }
+    },
+    "Copy download address" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "复制下载地址"
+          }
+        }
+      }
+    },
+    "Could not change Login Items" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法更改登录项"
+          }
+        }
+      }
+    },
+    "Could not disable launch at login: %@. Open Login Items in System Settings and try again." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法关闭登录时启动：%@。请在系统设置中打开「登录项」后重试。"
+          }
+        }
+      }
+    },
+    "Could not enable launch at login: %@. Open Login Items in System Settings and try again." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法开启登录时启动：%@。请在系统设置中打开「登录项」后重试。"
+          }
+        }
+      }
+    },
+    "Could not update the Claude status line helper: %@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更新 Claude 状态栏组件失败：%@"
+          }
+        }
+      }
+    },
+    "CX" : {
+      "comment" : "Codex's initials on the circular complication.",
+      "shouldTranslate" : false
+    },
+    "Demo" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "演示"
+          }
+        }
+      }
+    },
+    "Demo mode" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "演示模式"
+          }
+        }
+      }
+    },
+    "Demo mode · sample data" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "演示模式 · 示例数据"
+          }
+        }
+      }
+    },
+    "Demo mode shows the interface with one fixed set of sample readings. It never writes real data, widgets or alerts, and it turns itself off when you reopen the app." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "演示模式用一份固定的示例数据展示界面，不会写入真实数据、小组件和提醒；重新打开 App 会自动退出。"
+          }
+        }
+      }
+    },
+    "Do you have other devices?" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你还有别的设备吗"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        }
+      }
+    },
+    "Drag the downloaded QuotaGlance.app into Applications, then open it." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "把下载到的 QuotaGlance.app 拖进「应用程序」，然后打开它。"
+          }
+        }
+      }
+    },
+    "Enable Launch at Login" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启登录时启动"
+          }
+        }
+      }
+    },
+    "Exit" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出"
+          }
+        }
+      }
+    },
+    "Expand the steps to add it" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "展开添加步骤"
+          }
+        }
+      }
+    },
+    "Follow the menu bar app’s prompts to complete one collection." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按菜单栏 App 的提示完成一次采集。"
+          }
+        }
+      }
+    },
+    "General" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通用"
+          }
+        }
+      }
+    },
+    "Heads-up alert" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "轻度提醒"
+          }
+        }
+      }
+    },
+    "Help" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "帮助"
+          }
+        }
+      }
+    },
+    "iCloud" : {
+      "comment" : "Apple product name.",
+      "shouldTranslate" : false
+    },
+    "iCloud connected" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已连接 iCloud"
+          }
+        }
+      }
+    },
+    "iCloud sync" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 同步"
+          }
+        }
+      }
+    },
+    "iCloud sync failed" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 同步失败"
+          }
+        }
+      }
+    },
+    "If you write code on a Mac too, the menu bar is the closest place of all." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果你也在 Mac 上写代码，菜单栏是离你最近的位置。"
+          }
+        }
+      }
+    },
+    "Important alert" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重要提醒"
+          }
+        }
+      }
+    },
+    "Keep QuotaGlance available" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "让码量保持可用"
+          }
+        }
+      }
+    },
+    "Last step" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最后一步"
+          }
+        }
+      }
+    },
+    "Launch at Login" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录时启动"
+          }
+        }
+      }
+    },
+    "Loading" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "载入中"
+          }
+        }
+      }
+    },
+    "Loading…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加载中…"
+          }
+        }
+      }
+    },
+    "Maybe later" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以后再说"
+          }
+        }
+      }
+    },
+    "Move QuotaGlance to Applications and reopen it before enabling launch at login." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请先将「码量」移到「应用程序」并重新打开，再开启登录时启动。"
+          }
+        }
+      }
+    },
+    "Needs approval" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要批准"
+          }
+        }
+      }
+    },
+    "No always-on place yet" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还没有常驻位置"
+          }
+        }
+      }
+    },
+    "No data for this service yet. Sign in to it in Settings, or check the collection hints on your Mac." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这个服务还没有数据：在设置里登录它的账号，或到 Mac 端查看采集提示。"
+          }
+        }
+      }
+    },
+    "No data yet. Sign in to an account in Settings, or open QuotaGlance on your Mac to collect once." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还没有数据：在设置里登录账号，或在 Mac 上打开「码量」采集一次。"
+          }
+        }
+      }
+    },
+    "No Mac-collected data has arrived yet." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还没收到 Mac 采集的数据。"
+          }
+        }
+      }
+    },
+    "No quota data yet" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还没有额度数据"
+          }
+        }
+      }
+    },
+    "Not connected" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "账号未连接"
+          }
+        }
+      }
+    },
+    "Not now" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暂不开启"
+          }
+        }
+      }
+    },
+    "Not set" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未设置"
+          }
+        }
+      }
+    },
+    "Not synced yet" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尚未同步"
+          }
+        }
+      }
+    },
+    "Nothing collected for this service yet. Sign in to it on your iPhone, or check the hints on your Mac." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还没有采集到这个服务：在 iPhone 上登录它的账号，或到 Mac 端查看提示。"
+          }
+        }
+      }
+    },
+    "Notification permission" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知权限"
+          }
+        }
+      }
+    },
+    "Off" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已关闭"
+          }
+        }
+      }
+    },
+    "On" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已开启"
+          }
+        }
+      }
+    },
+    "Once signed in, this iPhone reads your quota directly, with no Mac involved. Credentials stay in this device’s keychain — never in iCloud or a backup." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录后 iPhone 可直接读取额度，不依赖 Mac。凭据只保存在本机钥匙串，不会进入 iCloud 或备份。"
+          }
+        }
+      }
+    },
+    "Once signed in, this iPhone reads your quota from the official endpoint directly. Credentials stay in this device’s keychain — never in iCloud or a backup." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录后 iPhone 直接向官方接口读取额度。凭据只保存在本机钥匙串，不会进入 iCloud 或备份。"
+          }
+        }
+      }
+    },
+    "Open Login Items" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开登录项"
+          }
+        }
+      }
+    },
+    "Open on this iPhone" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iPhone 上打开"
+          }
+        }
+      }
+    },
+    "Open QuotaGlance automatically after you log in so collection keeps running." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录 Mac 后自动打开「码量」，让额度采集持续运行。"
+          }
+        }
+      }
+    },
+    "Open Settings" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "去设置"
+          }
+        }
+      }
+    },
+    "Open System Settings" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开系统设置"
+          }
+        }
+      }
+    },
+    "Open the address below in a browser on your Mac and download the QuotaGlance installer." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 Mac 的浏览器里打开下面的地址，下载「码量」安装包。"
+          }
+        }
+      }
+    },
+    "Open the downloaded DMG, drag QuotaGlance into Applications, then open it." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开下载的 DMG，将「码量」拖入「应用程序」，然后打开。"
+          }
+        }
+      }
+    },
+    "Option 1: sign in on this iPhone (no Mac needed)" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "方式一：在这台 iPhone 上登录（不需要 Mac）"
+          }
+        }
+      }
+    },
+    "Option 2: sync from a Mac" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "方式二：从 Mac 同步"
+          }
+        }
+      }
+    },
+    "Overwrite and set up" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "覆盖并配置"
+          }
+        }
+      }
+    },
+    "Overwrite the existing Claude Code status line setting?" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "覆盖现有的 Claude Code 状态栏配置？"
+          }
+        }
+      }
+    },
+    "Privacy policy" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐私政策"
+          }
+        }
+      }
+    },
+    "Put QuotaGlance on your Home Screen, Lock Screen or watch face and see what is left without opening the app." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "把码量放到主屏幕、锁屏或表盘上，不打开 App 也能看到还剩多少。"
+          }
+        }
+      }
+    },
+    "Put QuotaGlance where you will see it every day" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "把码量放到你每天看得到的地方"
+          }
+        }
+      }
+    },
+    "Quit" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出"
+          }
+        }
+      }
+    },
+    "Quota progress; the gray portion is what has been used" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "额度进度，灰色为已用额度"
+          }
+        }
+      }
+    },
+    "Quota source" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "额度来源"
+          }
+        }
+      }
+    },
+    "QuotaGlance" : {
+      "comment" : "The app's own name, drawn as the home screen title and as the Mac panel's header. 「码量」 and \"QuotaGlance\" are two brand names rather than a translation of one another, but each language does use its own — so this is translated, exactly like CFBundleDisplayName in each target's InfoPlist.xcstrings. Do not derive one from the other.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QuotaGlance"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "码量"
+          }
+        }
+      }
+    },
+    "QuotaGlance shows how much Codex and Claude Code quota is left and when it resets. Pick either route below and this page turns into your dashboard." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「码量」用来查看 Codex 和 Claude Code 还剩多少额度、什么时候重置。下面两种方式任选一种，之后这一页会自动变成额度看板。"
+          }
+        }
+      }
+    },
+    "Read failed" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "读取失败"
+          }
+        }
+      }
+    },
+    "Reading quota" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在读取额度"
+          }
+        }
+      }
+    },
+    "Refresh failed — showing the previous reading" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刷新失败，正在显示旧数据"
+          }
+        }
+      }
+    },
+    "Refresh failed · saved data" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刷新失败 · 显示旧数据"
+          }
+        }
+      }
+    },
+    "Refresh now" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立即刷新"
+          }
+        }
+      }
+    },
+    "Restricted" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "受限制"
+          }
+        }
+      }
+    },
+    "Retry" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重试"
+          }
+        }
+      }
+    },
+    "Runs out first" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最先见底"
+          }
+        }
+      }
+    },
+    "Runs out first: %@ %@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Runs out first: %1$@ %2$@, %3$@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最先见底：%1$@ %2$@，%3$@"
+          }
+        }
+      }
+    },
+    "See your AI coding quota and when it resets, at a glance." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "随时查看 AI 编程额度与重置时间。"
+          }
+        }
+      }
+    },
+    "Sends an alert once a Codex or Claude Code weekly quota has reset." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 Codex 或 Claude Code 的每周额度重置后发送提醒。"
+          }
+        }
+      }
+    },
+    "Service" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务"
+          }
+        }
+      }
+    },
+    "Set up for me" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一键配置"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置"
+          }
+        }
+      }
+    },
+    "Setup failed" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配置失败"
+          }
+        }
+      }
+    },
+    "Setup failed: %@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配置失败：%@"
+          }
+        }
+      }
+    },
+    "Show sample data" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看演示数据"
+          }
+        }
+      }
+    },
+    "Show the steps" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看添加步骤"
+          }
+        }
+      }
+    },
+    "Shows the interface with one fixed set of sample readings, for a look around or a screenshot. It changes no real data and leaves widgets, the watch and alerts alone; reopening the app turns it off." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用一份固定的示例数据展示界面，方便先看效果或截图。演示期间不会修改真实数据，也不影响小组件、手表和提醒；重新打开 App 会自动退出。"
+          }
+        }
+      }
+    },
+    "Sign in" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录账号"
+          }
+        }
+      }
+    },
+    "Sign in again" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新登录"
+          }
+        }
+      }
+    },
+    "Sign in on your iPhone first, or open QuotaGlance on your Mac to collect once." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请先在 iPhone 上登录账号，或在 Mac 上打开「码量」采集一次。"
+          }
+        }
+      }
+    },
+    "Sign in with ChatGPT" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录 ChatGPT 账号"
+          }
+        }
+      }
+    },
+    "Sign in with Claude" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录 Claude 账号"
+          }
+        }
+      }
+    },
+    "Sign out" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出"
+          }
+        }
+      }
+    },
+    "Sign your Mac and this iPhone in to the same iCloud account." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac 和这台 iPhone 登录同一个 iCloud 账号。"
+          }
+        }
+      }
+    },
+    "Sign-in expired" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录已过期"
+          }
+        }
+      }
+    },
+    "Sign-in expired · saved data" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录已过期 · 显示旧数据"
+          }
+        }
+      }
+    },
+    "Sign-in failed" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录失败"
+          }
+        }
+      }
+    },
+    "Source: %@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数据源：%@"
+          }
+        }
+      }
+    },
+    "Sync failed" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "同步失败"
+          }
+        }
+      }
+    },
+    "Syncing from your iPhone or iCloud…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在从 iPhone 或 iCloud 同步…"
+          }
+        }
+      }
+    },
+    "Tap to open QuotaGlance and sign in, or sync from a Mac." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "轻点打开「码量」，登录账号或从 Mac 同步。"
+          }
+        }
+      }
+    },
+    "The %@ weekly quota has reset. You can carry on." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 的每周额度已经重置，可以继续使用。"
+          }
+        }
+      }
+    },
+    "The Mac version needs macOS 14 or later." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac 版需要 macOS 14 或更高版本。"
+          }
+        }
+      }
+    },
+    "Turn on" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启"
+          }
+        }
+      }
+    },
+    "Unavailable" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不可用"
+          }
+        }
+      }
+    },
+    "Unknown" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知"
+          }
+        }
+      }
+    },
+    "Updates" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更新"
+          }
+        }
+      }
+    },
+    "Updating…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更新中…"
+          }
+        }
+      }
+    },
+    "Urgent alert" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "紧急提醒"
+          }
+        }
+      }
+    },
+    "User guide" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用说明"
+          }
+        }
+      }
+    },
+    "Waiting for browser authorization…" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等待浏览器授权…"
+          }
+        }
+      }
+    },
+    "Weekly quota alert thresholds (percent remaining)" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每周额度提醒阈值（剩余百分比）"
+          }
+        }
+      }
+    },
+    "Weekly quota reset alert" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每周额度重置提醒"
+          }
+        }
+      }
+    },
+    "Which service do you want to connect?" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要连接哪个服务？"
+          }
+        }
+      }
+    },
+    "With this off, quotas are only checked while the app is open, so alerts may arrive late or not at all." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "关闭后只有打开 App 时才会检查额度，可能收不到及时的提醒。"
+          }
+        }
+      }
+    },
+    "You will also be asked once, the first time a quota reading arrives." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "首次获取到额度数据时也会询问一次。"
+          }
+        }
+      }
+    },
+    "Your existing ~/.claude/settings.json is backed up to ~/.agent-quota first, so you can restore it by hand later." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "原有的 ~/.claude/settings.json 会先备份到 ~/.agent-quota，之后可以手动恢复。"
+          }
+        }
+      }
+    },
+    "Your quota" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的额度"
+          }
+        }
+      }
+    },
+    "Your sign-in has expired. Please sign in again." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录已失效，请重新登录。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

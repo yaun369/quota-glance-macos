@@ -1,0 +1,59 @@
+targets:
+  QuotaPulseMac:
+    type: application
+    platform: macOS
+    productName: QuotaGlance
+    deploymentTarget: "14.0"
+    sources:
+      - path: ../QuotaPulseMac
+        excludes:
+          - Info.plist
+      - path: ../Shared/Assets.xcassets
+      - path: ../Shared/DesignSystem
+      - path: ../Shared/Localization
+    dependencies:
+      - package: QuotaPulseKit
+      - package: Sparkle
+      - target: ClaudeStatusHelper
+        embed: true
+        link: false
+        codeSign: true
+        copy:
+          destination: executables
+    configFiles:
+      Debug: ../../Config/Community.xcconfig
+      Release: ../../Config/OfficialRelease.xcconfig
+    settings:
+      base:
+        PRODUCT_NAME: QuotaGlance
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: QuotaPulseMac/Info.plist
+        CODE_SIGN_ENTITLEMENTS: QuotaPulseMac/QuotaPulseMac.entitlements
+        SWIFT_VERSION: "5.0"
+      configs:
+        Debug:
+          ENABLE_HARDENED_RUNTIME: NO
+        # Direct distribution uses Hardened Runtime without App Sandbox: the
+        # collector launches local CLIs and reads their config directories.
+        Release:
+          ENABLE_HARDENED_RUNTIME: YES
+          CODE_SIGN_ENTITLEMENTS: QuotaPulseMac/QuotaPulseMacRelease.entitlements
+
+  ClaudeStatusHelper:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    productName: claude-status-helper
+    sources:
+      - path: ../../Sources/claude-status-helper
+    dependencies:
+      - package: QuotaPulseKit
+    scheme: {}
+    configFiles:
+      Debug: ../../Config/Community.xcconfig
+      Release: ../../Config/OfficialRelease.xcconfig
+    settings:
+      base:
+        PRODUCT_NAME: claude-status-helper
+        SKIP_INSTALL: YES
+        SWIFT_VERSION: "5.0"

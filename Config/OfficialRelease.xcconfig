@@ -1,0 +1,10 @@
+#include "Version.xcconfig"
+
+DEVELOPMENT_TEAM = YG579F4QU3
+PRODUCT_BUNDLE_IDENTIFIER = dev.yuanmeng.quotapulse.mac
+CODE_SIGN_STYLE = Automatic
+CODE_SIGN_IDENTITY = Apple Development
+QUOTA_CLOUDKIT_ENABLED = YES
+QUOTA_CLOUDKIT_CONTAINER_IDENTIFIER = iCloud.dev.yuanmeng.quotapulse
+QUOTA_SPARKLE_ENABLED = YES
+QUOTA_SPARKLE_FEED_URL = https:/$()/raw.githubusercontent.com/yaun369/quota-glance-macos/main/appcast.xml

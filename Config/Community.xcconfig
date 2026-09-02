@@ -1,0 +1,14 @@
+#include "Version.xcconfig"
+
+// Community builds use no QuotaGlance signing identity, CloudKit container,
+// or update channel. Override these in the untracked Local.xcconfig if needed.
+DEVELOPMENT_TEAM =
+PRODUCT_BUNDLE_IDENTIFIER = org.quotaglance.community
+CODE_SIGN_STYLE = Automatic
+CODE_SIGNING_ALLOWED = NO
+QUOTA_CLOUDKIT_ENABLED = NO
+QUOTA_CLOUDKIT_CONTAINER_IDENTIFIER =
+QUOTA_SPARKLE_ENABLED = NO
+QUOTA_SPARKLE_FEED_URL = https:/$()/example.invalid/quotaglance/appcast.xml
+
+#include? "Local.xcconfig"
