@@ -8,6 +8,7 @@ fi
 
 snapshot="${1:A}"
 [[ -d "$snapshot" ]] || { print -u2 "not a directory: $snapshot"; exit 66; }
+command -v rg >/dev/null || { print -u2 "required command not found: rg"; exit 69; }
 
 # Build caches may contain third-party fixtures (including Sparkle test keys)
 # and are never exported or committed. Scan the snapshot, not ignored output.
