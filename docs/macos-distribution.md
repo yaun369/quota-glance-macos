@@ -1,122 +1,170 @@
-# macOS source mirroring, distribution, and updates
+# macOS 源码镜像、分发与更新
 
-## Decision and repository boundary
+## 仓库边界
 
-QuotaGlance for Mac is distributed as a Developer ID-signed, Apple-notarized
-DMG, not through the Mac App Store. The collector launches `codex app-server`
-and reads local Claude/Codex configuration, so the official Release enables
-Hardened Runtime but deliberately does not enable App Sandbox.
+QuotaGlance for Mac 通过 Developer ID 签名 + Apple 公证的 DMG 直接分发，不走 Mac
+App Store。采集器要启动 `codex app-server` 并读取本地 Claude/Codex 配置，因此正式
+Release 启用 Hardened Runtime，但**刻意不启用 App Sandbox**。
 
-The private `yaun369/quota-pulse` repository remains the multi-platform
-development source during phase one. The public
-[`yaun369/quota-glance-macos`](https://github.com/yaun369/quota-glance-macos)
-repository receives clean, manifest-controlled snapshots only. It owns Mac
-tags, GitHub Releases, `QuotaGlance.dmg`, and `appcast.xml`; private branches,
-tags, Git objects, mobile app targets, and signing material never cross the
-boundary.
+- 私仓 `yaun369/quota-pulse`：多平台开发源码。
+- 公开仓库 [`yaun369/quota-glance-macos`](https://github.com/yaun369/quota-glance-macos)：
+  只接收白名单快照，拥有 Mac 的 tag、GitHub Release、`QuotaGlance.dmg` 和
+  `appcast.xml`。
 
-## Community and official configurations
+私有分支、tag、Git 对象、移动端 target、签名材料一律不过界。禁止
+`git push --mirror`、禁止拷贝 `.git`。
 
-- `Config/Community.xcconfig` is the default Debug configuration. It uses an
-  unsigned community bundle identifier and disables CloudKit and Sparkle.
-  Local Codex/Claude collection continues when CloudKit is unavailable.
-- `Config/OfficialRelease.xcconfig` selects
-  `dev.yuanmeng.quotapulse.mac`, production
-  `iCloud.dev.yuanmeng.quotapulse`, the public Sparkle feed, and official
-  signing. It keeps the existing OAuth Keychain service namespace unchanged.
-- `Config/Version.xcconfig` is the only source of marketing version and build
-  number for every target and the release scripts.
+## 构建配置
 
-Developers may create ignored `Config/Local.xcconfig` overrides with their own
-team, bundle ID, and optional CloudKit container. They must not use the
-official container.
+| 文件 | 用途 |
+| --- | --- |
+| `Config/Community.xcconfig` | 默认 Debug 配置。未签名的社区 bundle ID，关闭 CloudKit 和 Sparkle；CloudKit 不可用时本地采集照常工作。 |
+| `Config/OfficialRelease.xcconfig` | 正式发布。`dev.yuanmeng.quotapulse.mac`、生产容器 `iCloud.dev.yuanmeng.quotapulse`、公开 Sparkle 源、官方签名。OAuth Keychain 命名空间保持不变。 |
+| `Config/Version.xcconfig` | 所有 target 和发布脚本唯一的版本号与 build 号来源。 |
 
-## Export a public snapshot
+开发者可以建被忽略的 `Config/Local.xcconfig` 覆盖 team、bundle ID 和自己的
+CloudKit 容器，但不得使用官方容器。
 
-The exporter accepts only paths in `scripts/public-macos-export.txt`, reads
-them from the committed `HEAD` with `git archive`, records the source SHA, and
-runs filename/content safety checks. It refuses dirty source/destination
-worktrees and unusually large deletions. Public README/community files,
-workflow, release state, and `appcast.xml` are preserved after initialization.
+## 公开快照导出
+
+导出器只接受 `scripts/public-macos-export.txt` 里的路径，用 `git archive` 从已提交
+的 `HEAD` 读取，记录源 SHA，并做文件名/内容安全检查。源和目标工作区不干净、或删除
+量异常时它会拒绝执行。公开仓库自有的 README、社区文件、workflow、发布状态和
+`appcast.xml` 在初始化之后会被保留。
+
+私仓 `main` 的每次 push 都会在 CI 里跑同一个导出器并推到公开 `main`，所以合并 PR
+就等于发布其白名单路径，无需手动操作。workflow 也支持手动 dispatch 重跑，并且串行
+执行，两次合并不会竞争。想在快照上线前先本地检查，或要初始化一个空仓库时，才手动跑：
 
 ```sh
 git clone git@github.com:yaun369/quota-glance-macos.git ../quota-glance-macos
-./scripts/sync-public-macos.sh ../quota-glance-macos --initialize # first snapshot only
-# Later snapshots omit --initialize.
-git -C ../quota-glance-macos diff --check
+./scripts/sync-public-macos.sh ../quota-glance-macos --initialize  # 仅首次
+./scripts/sync-public-macos.sh ../quota-glance-macos               # 后续
 git -C ../quota-glance-macos status --short
 ```
 
-Review and commit a normal snapshot in the public repository. Never use
-`git push --mirror`, copy `.git`, or publish private branches/tags.
+workflow 使用细粒度的 `PUBLIC_MAC_REPO_TOKEN`（权限仅限公开仓库的 Contents）和受保
+护的 `public-macos-sync` environment。PR 永远拿不到这个 token。
 
-Every push to the private `main` branch also runs the same exporter in CI and
-pushes the resulting snapshot to the public `main` branch, so a merged pull
-request publishes its whitelisted paths without further action. The workflow
-still accepts a manual dispatch for re-runs, and runs are serialized so two
-merges cannot race the public push. Run the script locally when you want to
-inspect a snapshot before it ships, or to initialize an empty destination.
+## 一次性凭据准备
 
-The workflow uses a fine-grained `PUBLIC_MAC_REPO_TOKEN` limited to the public
-repository's Contents permission and a protected `public-macos-sync`
-environment. Pull requests never receive that token.
+这几步是**创建**凭据；每次发布由下面清单的 Phase 0 负责校验。
 
-## One-time official release setup
+1. 安装 team `YG579F4QU3` 的 `Developer ID Application` 证书。
+2. 为 `dev.yuanmeng.quotapulse.mac` 创建并安装带 CloudKit 权限的 **Developer ID**
+   描述文件。
+3. `xcrun notarytool store-credentials` 保存公证凭据。
+4. Sparkle 私钥放在登录钥匙串的 `dev.yuanmeng.quotapulse` 账户下。已提交的公钥是
+   `TeHYVnUJ9hxMc1WTmxQevNuS9IoShE88sTu7YVuUDnM=`。**永不轮换，永不提交私钥**——
+   丢了它，所有已安装版本将永远无法再更新。
 
-1. Install a `Developer ID Application` certificate for team `YG579F4QU3`.
-2. Create/install the Developer ID provisioning profile for
-   `dev.yuanmeng.quotapulse.mac` with its CloudKit entitlement.
-3. Store notarization credentials with `xcrun notarytool store-credentials`.
-4. Keep the existing Sparkle private key in the login Keychain account
-   `dev.yuanmeng.quotapulse` or a protected secret. Its committed public key is
-   `TeHYVnUJ9hxMc1WTmxQevNuS9IoShE88sTu7YVuUDnM=`. Never rotate it merely for
-   the repository move and never commit the private key.
+## 发布清单
 
-## Release order
+每次发布固定走六个阶段。每个阶段有一个「闸门」，没看到闸门就不要进下一阶段。下文
+`X.Y.Z` 代表版本号，`BUILD` 代表 build 号。
 
-1. Update `Config/Version.xcconfig` and `docs/releases/X.Y.Z.md` in the private
-   repository; run tests and a universal build.
-2. Merge that work into `main` and let the sync workflow publish the snapshot.
-   Wait for public CI, then tag that public source commit `vX.Y.Z` and push the
-   tag.
-3. Check out the public tag and build from it:
+> 线上 Sparkle 源是**公开仓库**的 `appcast.xml`。私仓根目录那份只是初始化公开仓库
+> 用的空模板，改它不会发布任何更新。
 
-   ```sh
-   export DEVELOPER_ID_APPLICATION='Developer ID Application: Your Name (YG579F4QU3)'
-   export APPLE_TEAM_ID='YG579F4QU3'
-   export NOTARY_PROFILE='QuotaGlance-notary'
-   ./scripts/release-macos.sh
-   ```
+### Phase 0 · 机器前置条件
 
-   This validates tag/version/build/release notes, uses the checkout-local
-   Sparkle artifact path, archives a universal app, signs and notarizes the
-   DMG, and produces an appcast candidate. dSYMs and the notarization JSON stay
-   in ignored local release evidence.
-4. Return the public checkout to `main`. The publish command requires an
-   explicit confirmation and enforces asset-first ordering:
+换机器时全查一遍；证书、描述文件、工具链变动后重查。
 
-   ```sh
-   CONFIRM_PUBLIC_RELEASE=vX.Y.Z \
-     ./scripts/publish-macos-release.sh build/macos-release/X.Y.Z-BUILD
-   ```
+- [ ] Developer ID 证书已安装：
+      `security find-identity -v -p codesigning | grep 'Developer ID Application'`
+- [ ] Developer ID 描述文件已安装：`~/Library/Developer/Xcode/UserData/Provisioning Profiles`
+      里存在 `Mac Team Direct Provisioning Profile: dev.yuanmeng.quotapulse.mac`。
+      同 bundle ID 的**开发**描述文件不能替代，构建会断言内嵌描述文件而失败。
+- [ ] 公证凭据可用：`xcrun notarytool history --keychain-profile QuotaGlance-notary`
+- [ ] Sparkle 私钥在钥匙串：`security find-generic-password -s 'https://sparkle-project.org'`
+- [ ] `xcodegen`、`rg`、已登录的 `gh` 都在 `PATH` 上（`gh auth status`）——三个脚本都要用。
 
-   It creates the public GitHub Release, uploads `QuotaGlance.dmg`, verifies
-   anonymous download, and only then commits/pushes `appcast.xml` plus its
-   root-level `QuotaGlance.md` release notes. This prevents clients from seeing
-   an update whose asset or release notes still return 404.
+### Phase 1 · 私仓：版本号与发版说明
 
-## Acceptance pass
+- [ ] `Config/Version.xcconfig` 提升 `MARKETING_VERSION`。
+- [ ] **同时提升 `CURRENT_PROJECT_VERSION`。** Sparkle 比对的是这个 build 号，重复
+      的话即使 marketing 版本变了，已安装的客户端也收不到更新。
+- [ ] 写 `docs/releases/X.Y.Z.md`。必须非空且包含字面量 `X.Y.Z`，发布脚本会 grep 校
+      验。这个文件同时是 GitHub Release 正文和 Sparkle 的发版说明页。
+- [ ] `swift test` 通过。
+- [ ] 合入私仓 `main`。
 
-Clone the public repository on a Mac without the private checkout. Run
-`swift test`, generate the Mac-only project, and complete the unsigned
-universal Release build. Confirm the generated project contains only
-`QuotaPulseMac` and `ClaudeStatusHelper`, and that Sparkle.framework plus
-`claude-status-helper` are embedded.
+**闸门**：私仓 `main` 已带上新版本号和发版说明。
 
-For distribution, install the previous notarized version in `/Applications`,
-enable Launch at Login, then update through **Settings → Check for Updates…**.
-Confirm version/build changes, relaunch, and login-item persistence. Restart,
-disable the item in System Settings, confirm the in-app switch follows, and
-restart once more to ensure the app stays closed. The legacy 0.2.0 has no
-Sparkle, so the first update test starts from a manually installed 0.3.0 (or a
-later Sparkle-enabled base build).
+### Phase 2 · 公开快照
+
+私仓 `main` 每次 push 都会触发 `Sync public macOS source`。
+
+- [ ] `gh run list --workflow sync-public-macos.yml --limit 1` 对应该合并提交为 `success`。
+- [ ] 公开仓库的 `Config/Version.xcconfig` 已经是 `X.Y.Z`：
+      `gh api repos/yaun369/quota-glance-macos/contents/Config/Version.xcconfig --jq .content | base64 -d`
+
+**闸门**：公开快照没带上版本号之前绝不打 tag——否则 tag 指向旧版本源码，构建会在版
+本校验处直接中止。
+
+### Phase 3 · 给公开源码打 tag
+
+在公开仓库的独立 checkout 里操作。已有的本地 checkout 如果陈旧、不干净、或初始化到
+一半，直接重新 clone，不要修——构建脚本和发布脚本都拒绝不干净的工作区。
+
+```sh
+git clone git@github.com:yaun369/quota-glance-macos.git ../quota-glance-macos
+cd ../quota-glance-macos
+git tag vX.Y.Z && git push origin vX.Y.Z
+```
+
+- [ ] tag 指向那个带 `X.Y.Z` 的同步提交。
+
+### Phase 4 · 构建、签名、公证（在 tag 上）
+
+```sh
+cd ../quota-glance-macos
+git checkout vX.Y.Z
+export DEVELOPER_ID_APPLICATION='Developer ID Application: mengmeng yuan (YG579F4QU3)'
+export APPLE_TEAM_ID='YG579F4QU3'
+export NOTARY_PROFILE='QuotaGlance-notary'
+./scripts/release-macos.sh
+```
+
+- [ ] `build/macos-release/X.Y.Z-BUILD` 尚不存在。签名证据不覆盖，重试前把上一次的
+      目录挪走。
+- [ ] 脚本跑完并打印候选 DMG 路径。
+
+脚本会先要求工作区干净、`origin` 是公开仓库、`HEAD` 正好是该 tag，然后归档通用二进
+制、用 Developer ID 导出，并断言：内嵌描述文件、`arm64` 与 `x86_64` 双架构、版本号
+与 build 号、公开的 `SUFeedURL`、内嵌 `Sparkle.framework` 与 `claude-status-helper`、
+以及**未**启用 App Sandbox。随后签名、公证、staple、`spctl` 评估，并用钥匙串里的
+Sparkle 私钥生成 appcast 候选。dSYM 和 `notarization.json` 作为证据留在被忽略的本地
+发布目录里。
+
+### Phase 5 · 发布（先资产，后更新源）
+
+```sh
+cd ../quota-glance-macos
+git checkout main
+CONFIRM_PUBLIC_RELEASE=vX.Y.Z \
+  ./scripts/publish-macos-release.sh build/macos-release/X.Y.Z-BUILD
+```
+
+- [ ] 命令报告已发布的 tag。
+
+它先创建公开 GitHub Release、上传 `QuotaGlance.dmg`、验证匿名下载成功，**之后**才提
+交并推送 `appcast.xml` 和根目录的 `QuotaGlance.md`，最后再校验两个 raw URL。顺序是
+刻意的：资产还不存在就先广播更新，等于把所有客户端送去 404。同一个 tag 脚本只允许跑
+一次，出错的补救方式是发新版本，不是覆盖。
+
+### Phase 6 · 验收
+
+源码侧（在没有私仓 checkout 的 Mac 上）：
+
+- [ ] clone 公开仓库，`swift test`，生成仅 Mac 的工程，完成未签名的通用 Release 构建。
+- [ ] 生成的工程只含 `QuotaPulseMac` 和 `ClaudeStatusHelper`，且内嵌了
+      `Sparkle.framework` 与 `claude-status-helper`。
+
+分发侧（从上一个已发布的公证版本装进 `/Applications` 开始；0.2.0 早于 Sparkle，所以
+起点用 0.3.0 或更新）：
+
+- [ ] 打开「登录时启动」，然后走 **设置 → 检查更新…**，版本号和 build 号都变成新版本。
+- [ ] 重新启动 App，登录项仍在。
+- [ ] 重启系统，在系统设置里关掉该登录项，确认 App 内的开关跟着变。
+- [ ] 再重启一次，确认 App 不会自启。
