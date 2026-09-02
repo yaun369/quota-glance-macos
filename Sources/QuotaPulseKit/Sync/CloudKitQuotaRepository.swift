@@ -72,6 +72,10 @@ public actor CloudKitQuotaRepository: QuotaSyncRepository {
 
     private let database: CKDatabase?
 
+    /// Set once the server has told us this container's production schema has
+    /// no `sourceVersion` field. See ``push(_:)``.
+    private var omitsSourceVersion = false
+
     public init(
         containerIdentifier: String? = CloudKitQuotaRepository.containerIdentifier,
         isEnabled: Bool = CloudKitQuotaRepository.isEnabled
@@ -99,12 +103,40 @@ public actor CloudKitQuotaRepository: QuotaSyncRepository {
             } catch {
                 throw QuotaSyncError.from(error)
             }
+        } catch let error as CKError where !omitsSourceVersion && Self.isSchemaRejection(error) {
+            // A production schema only gains a field when someone deploys it
+            // from the CloudKit Console; a container whose schema predates
+            // `sourceVersion` rejects the *entire* save. That would take the
+            // user's quota sync down over a field they never see — it is an
+            // activation-attribution tag, not part of the reading. Drop it
+            // and try once more.
+            //
+            // The latch is set only after the retry succeeds, so a rejection
+            // that was really about something else still surfaces as itself
+            // and does not quietly cost us the tag for the rest of the run.
+            do {
+                try await pushOnce(snapshot, includingSourceVersion: false)
+                omitsSourceVersion = true
+            } catch {
+                throw QuotaSyncError.from(error)
+            }
         } catch {
             throw QuotaSyncError.from(error)
         }
     }
 
-    private func pushOnce(_ snapshot: QuotaSnapshot) async throws {
+    /// True for the server's "your schema does not have this field" refusal.
+    ///
+    /// Matched by code rather than by the message text: the message names the
+    /// field, but it is English-only server prose and not something to parse.
+    static func isSchemaRejection(_ error: CKError) -> Bool {
+        error.code == .invalidArguments || error.code == .serverRejectedRequest
+    }
+
+    private func pushOnce(
+        _ snapshot: QuotaSnapshot,
+        includingSourceVersion: Bool = true
+    ) async throws {
         guard let database else { throw QuotaSyncError.disabled }
         let recordID = CKRecord.ID(recordName: Self.recordName(for: snapshot.provider))
         let record: CKRecord
@@ -118,7 +150,11 @@ public actor CloudKitQuotaRepository: QuotaSyncRepository {
         // restarts. Protect the durable record as well so an older-but-valid
         // StatusLine reading can never replace a newer OAuth snapshot that is
         // already in CloudKit.
-        guard Self.applyIfNotOlder(snapshot, to: record) else { return }
+        guard Self.applyIfNotOlder(
+            snapshot,
+            to: record,
+            includingSourceVersion: includingSourceVersion && !omitsSourceVersion
+        ) else { return }
 
         _ = try await database.save(record)
     }
@@ -146,23 +182,35 @@ public actor CloudKitQuotaRepository: QuotaSyncRepository {
         "\(provider.rawValue)-latest"
     }
 
-    static func apply(_ snapshot: QuotaSnapshot, to record: CKRecord) {
+    static func apply(
+        _ snapshot: QuotaSnapshot,
+        to record: CKRecord,
+        includingSourceVersion: Bool = true
+    ) {
         record["provider"] = snapshot.provider.rawValue
         record["sessionUsedPercent"] = snapshot.session.usedPercent
         record["sessionResetAt"] = snapshot.session.resetAt
         record["weeklyUsedPercent"] = snapshot.weekly.usedPercent
         record["weeklyResetAt"] = snapshot.weekly.resetAt
         record["capturedAt"] = snapshot.capturedAt
-        record["sourceVersion"] = snapshot.sourceVersion
+        // Left untouched, not cleared, when excluded: assigning `nil` is
+        // itself a modification of the field the server is refusing.
+        if includingSourceVersion {
+            record["sourceVersion"] = snapshot.sourceVersion
+        }
     }
 
     @discardableResult
-    static func applyIfNotOlder(_ snapshot: QuotaSnapshot, to record: CKRecord) -> Bool {
+    static func applyIfNotOlder(
+        _ snapshot: QuotaSnapshot,
+        to record: CKRecord,
+        includingSourceVersion: Bool = true
+    ) -> Bool {
         if let existingCapturedAt = record["capturedAt"] as? Date,
            existingCapturedAt > snapshot.capturedAt {
             return false
         }
-        apply(snapshot, to: record)
+        apply(snapshot, to: record, includingSourceVersion: includingSourceVersion)
         return true
     }
 

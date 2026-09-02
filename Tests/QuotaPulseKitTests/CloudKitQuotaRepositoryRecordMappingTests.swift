@@ -45,6 +45,47 @@ final class CloudKitQuotaRepositoryRecordMappingTests: XCTestCase {
         XCTAssertNil(decoded?.sourceVersion)
     }
 
+    func testExcludingSourceVersionStillWritesTheReading() {
+        let snapshot = QuotaSnapshot(
+            provider: .codex,
+            session: QuotaWindow(usedPercent: 27),
+            capturedAt: Date(timeIntervalSince1970: 1_779_000_000),
+            sourceVersion: "mac/0.3.0"
+        )
+
+        let record = CKRecord(recordType: "QuotaSnapshot", recordID: CKRecord.ID(recordName: "codex-latest"))
+        CloudKitQuotaRepository.apply(snapshot, to: record, includingSourceVersion: false)
+
+        // The point of the fallback: everything the user can see still syncs.
+        XCTAssertNil(record["sourceVersion"] as? String)
+        XCTAssertEqual(CloudKitQuotaRepository.snapshot(from: record)?.session.usedPercent, 27)
+        XCTAssertEqual(CloudKitQuotaRepository.snapshot(from: record)?.capturedAt, snapshot.capturedAt)
+    }
+
+    func testExcludingSourceVersionLeavesAnExistingValueAlone() {
+        let record = CKRecord(recordType: "QuotaSnapshot", recordID: CKRecord.ID(recordName: "codex-latest"))
+        record["sourceVersion"] = "mac/0.2.0"
+
+        CloudKitQuotaRepository.apply(
+            QuotaSnapshot(provider: .codex, capturedAt: Date(timeIntervalSince1970: 2_000), sourceVersion: "mac/0.3.0"),
+            to: record,
+            includingSourceVersion: false
+        )
+
+        // Assigning nil would itself modify the field the server refused.
+        XCTAssertEqual(record["sourceVersion"] as? String, "mac/0.2.0")
+    }
+
+    func testOnlySchemaRefusalsTriggerTheSourceVersionFallback() {
+        XCTAssertTrue(CloudKitQuotaRepository.isSchemaRejection(CKError(.invalidArguments)))
+        XCTAssertTrue(CloudKitQuotaRepository.isSchemaRejection(CKError(.serverRejectedRequest)))
+
+        XCTAssertFalse(CloudKitQuotaRepository.isSchemaRejection(CKError(.networkUnavailable)))
+        XCTAssertFalse(CloudKitQuotaRepository.isSchemaRejection(CKError(.notAuthenticated)))
+        XCTAssertFalse(CloudKitQuotaRepository.isSchemaRejection(CKError(.serverRecordChanged)))
+        XCTAssertFalse(CloudKitQuotaRepository.isSchemaRejection(CKError(.unknownItem)))
+    }
+
     func testRecordMissingRequiredFieldsDecodesToNil() {
         let record = CKRecord(recordType: "QuotaSnapshot", recordID: CKRecord.ID(recordName: "bogus"))
         XCTAssertNil(CloudKitQuotaRepository.snapshot(from: record))
