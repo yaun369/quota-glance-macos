@@ -294,8 +294,12 @@ final class ClaudeQuotaProviderTests: XCTestCase {
         let provider = makeProvider(cacheURL: cacheURL)
         let updateReceived = expectation(description: "cache update")
 
+        // Constructing the stream synchronously opens and resumes the file
+        // watcher before the write. Creating it inside the child Task races
+        // fast CI runners, where the write can win before observation starts.
+        let updates = provider.cacheUpdates()
         let observation = Task {
-            for await _ in provider.cacheUpdates() {
+            for await _ in updates {
                 updateReceived.fulfill()
                 return
             }

@@ -108,8 +108,9 @@ final class CodexQuotaProviderTests: XCTestCase {
               initialized=1
               ;;
             account/rateLimits/read)
-              if [ ! -f "\(stateURL.path)" ]; then
-                touch "\(stateURL.path)"
+              # mkdir is atomic across the old process and its replacement:
+              # exactly the first request sleeps past the timeout.
+              if mkdir "\(stateURL.path)" 2>/dev/null; then
                 sleep 0.2
               fi
               printf '{"jsonrpc":"2.0","id":%s,"result":{"rateLimits":{"primary":{"usedPercent":30,"windowDurationMins":300,"resetsAt":1780000000},"secondary":null}}}\\n' "$id"
