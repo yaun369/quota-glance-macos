@@ -1,5 +1,5 @@
-# QuotaGlance 0.3.0
+# QuotaGlance 0.3.1
 
-- Adds Launch at Login with live synchronization to macOS Login Items.
-- Makes every provider state explicit and puts the matching recovery action in the menu panel.
-- Adds signed automatic updates for the notarized direct-distribution build.
+- Keeps CloudKit synchronization working with production records that do not yet contain the `sourceVersion` field.
+- Gives the macOS menu panel an opaque surface for more consistent readability.
+- Explains why unsigned community builds cannot save account sign-ins instead of showing a generic Keychain failure.
