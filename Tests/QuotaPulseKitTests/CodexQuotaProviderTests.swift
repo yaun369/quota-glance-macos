@@ -111,7 +111,7 @@ final class CodexQuotaProviderTests: XCTestCase {
               # mkdir is atomic across the old process and its replacement:
               # exactly the first request sleeps past the timeout.
               if mkdir "\(stateURL.path)" 2>/dev/null; then
-                sleep 0.2
+                sleep 2
               fi
               printf '{"jsonrpc":"2.0","id":%s,"result":{"rateLimits":{"primary":{"usedPercent":30,"windowDurationMins":300,"resetsAt":1780000000},"secondary":null}}}\\n' "$id"
               ;;
@@ -127,7 +127,11 @@ final class CodexQuotaProviderTests: XCTestCase {
         let client = CodexAppServerClient(executablePath: retryServerURL.path)
         let provider = makeAppServerOnlyProvider(
             client: client,
-            requestTimeout: 0.05,
+            // GitHub's macOS runners may need a few hundred milliseconds to
+            // launch and initialize even the tiny shell fake. Keep the first
+            // response well beyond this timeout while leaving enough room
+            // for the restarted process to answer reliably.
+            requestTimeout: 1,
             retryDelay: .milliseconds(10)
         )
 
