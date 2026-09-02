@@ -159,6 +159,7 @@
 "token.saveFailed" = "Could not save your sign-in: %@";
 "token.loadFailed" = "Could not read your saved sign-in: %@";
 "token.keychainFailed" = "Keychain access failed (status %@).";
+"token.keychainUnavailableForBuild" = "This build cannot use the keychain, so the sign-in was not saved. An unsigned build has no keychain of its own — sign in from a signed build of QuotaGlance (status %@).";
 "token.decodeFailed" = "Could not decode the sign-in token.";
 "token.payloadInvalid" = "The sign-in token payload was invalid: %@";
 

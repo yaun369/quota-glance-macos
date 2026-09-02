@@ -13,6 +13,18 @@ public enum OAuthTokenStoreError: LocalizedError, Sendable, Equatable {
             return QuotaL10n.string("token.saveFailed", "Could not save your sign-in: \(reason)")
         case .decodingFailed(let reason):
             return QuotaL10n.string("token.loadFailed", "Could not read your saved sign-in: \(reason)")
+        case .keychainFailure(let status) where status == errSecMissingEntitlement:
+            // The one status a user can hit without anything being broken:
+            // an unsigned build has no code-signing identity, so it has no
+            // data-protection keychain to write to. Reading already treats
+            // this as "not signed in" (see `load`), but saving cannot — the
+            // sign-in genuinely has nowhere to go, and the raw number tells
+            // the reader nothing about why a browser that just said
+            // "登录成功" is followed by a failure in the app.
+            return QuotaL10n.string(
+                "token.keychainUnavailableForBuild",
+                "This build cannot use the keychain, so the sign-in was not saved. An unsigned build has no keychain of its own — sign in from a signed build of QuotaGlance (status \(String(status)))."
+            )
         case .keychainFailure(let status):
             return QuotaL10n.string("token.keychainFailed", "Keychain access failed (status \(String(status))).")
         }

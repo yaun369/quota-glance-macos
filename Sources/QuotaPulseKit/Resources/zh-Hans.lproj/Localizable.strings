@@ -162,6 +162,7 @@
 "token.saveFailed" = "无法保存登录状态：%@";
 "token.loadFailed" = "无法读取已保存的登录状态：%@";
 "token.keychainFailed" = "访问钥匙串失败（状态码 %@）。";
+"token.keychainUnavailableForBuild" = "这个构建无法使用钥匙串，登录没能保存。未签名的构建没有自己的钥匙串——请用签名版的 QuotaGlance 登录（状态码 %@）。";
 "token.decodeFailed" = "无法解析登录返回的令牌。";
 "token.payloadInvalid" = "登录返回的令牌内容无效：%@";
 

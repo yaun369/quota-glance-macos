@@ -213,4 +213,26 @@ final class QuotaFormattingTests: XCTestCase {
         XCTAssertTrue(text.contains("-25293"), text)
         XCTAssertFalse(text.contains("-25,293"), text)
     }
+
+    /// -34018 is the one keychain status a user reaches without anything
+    /// being broken — an unsigned build has no keychain to save into — so it
+    /// gets its own sentence instead of the bare "status N" line. Asserted
+    /// against the generic string rather than against English words: this
+    /// test has to hold in whatever language the machine running it prefers.
+    func testUnsignedBuildGetsAReasonRatherThanJustAStatusCode() {
+        let unsigned = OAuthTokenStoreError.keychainFailure(errSecMissingEntitlement).errorDescription ?? ""
+        let genericForSameStatus = QuotaL10n.string(
+            "token.keychainFailed",
+            "Keychain access failed (status \(String(errSecMissingEntitlement)))."
+        )
+
+        XCTAssertNotEqual(unsigned, genericForSameStatus)
+        XCTAssertTrue(unsigned.contains("-34018"), unsigned)
+
+        // Every other status keeps the generic line.
+        XCTAssertEqual(
+            OAuthTokenStoreError.keychainFailure(-25_293).errorDescription,
+            QuotaL10n.string("token.keychainFailed", "Keychain access failed (status \(String(OSStatus(-25_293)))).")
+        )
+    }
 }
