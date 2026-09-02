@@ -59,11 +59,17 @@ struct MenuBarContentView: View {
         }
         .padding(14)
         .frame(width: 320)
-        // No warm backdrop and no card shadows here (§5.7): the popover's
-        // material belongs to the system, and painting over it is what makes
-        // a menu panel look wrong on somebody else's wallpaper. What this
-        // panel takes from the design system is the bar, the status colors
-        // and the type hierarchy — not the surface.
+        // An opaque card surface, and still no shadows (§5.7). Leaving the
+        // system material bare was the earlier rule, but the material lets
+        // the wallpaper through: on a dark desktop the panel's effective
+        // background drops far below the value every ink token in
+        // `QuotaPalette` was calibrated against, and `inkSecondary` /
+        // `inkTertiary` — resets, freshness, the data source line — stop
+        // being readable. The palette's contrast promise only holds if this
+        // panel owns its background, so it does. `surface`, not the warm
+        // `bg`: it is what the other three surfaces put content on, and it
+        // is the closest to what a native menu paints.
+        .background(QuotaPalette.surface)
         .onAppear {
             launchAtLogin.refreshStatus()
             // Opening the menu is a refresh intent, but not user-initiated:

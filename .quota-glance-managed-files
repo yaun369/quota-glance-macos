@@ -1,4 +1,3 @@
-Apps/project.yml
 Apps/ProjectSpecs/base.yml
 Apps/ProjectSpecs/macos.yml
 Apps/QuotaPulseMac/AppUpdater.swift
@@ -82,19 +81,12 @@ Apps/Shared/DesignSystem/QuotaSurface.swift
 Apps/Shared/DesignSystem/QuotaTypography.swift
 Apps/Shared/DesignSystem/StatusChip.swift
 Apps/Shared/Localization/Localizable.xcstrings
+Apps/project.yml
 Config/Community.xcconfig
 Config/OfficialRelease.xcconfig
 Config/Version.xcconfig
-docs/macos-distribution.md
-docs/releases/0.3.0.md
 Package.swift
-scripts/check-public-snapshot.sh
-scripts/ExportOptions-DeveloperID.plist
-scripts/publish-macos-release.sh
-scripts/release-macos.sh
 SOURCE_COMMIT
-Sources/claude-status-helper/ClaudeStatusHelperMain.swift
-Sources/quota-cli/QuotaCLI.swift
 Sources/QuotaPulseKit/Activation/ActivationEvent.swift
 Sources/QuotaPulseKit/Activation/ActivationTracker.swift
 Sources/QuotaPulseKit/Activation/InstalledSurfaceProbe.swift
@@ -151,6 +143,8 @@ Sources/QuotaPulseKit/Sync/QuotaCoding.swift
 Sources/QuotaPulseKit/Sync/QuotaSnapshotCache.swift
 Sources/QuotaPulseKit/Sync/QuotaSyncRepository.swift
 Sources/QuotaPulseKit/Sync/QuotaSyncThrottle.swift
+Sources/claude-status-helper/ClaudeStatusHelperMain.swift
+Sources/quota-cli/QuotaCLI.swift
 Tests/QuotaPulseKitTests/AccountDirectQuotaServiceTests.swift
 Tests/QuotaPulseKitTests/ActivationTrackerTests.swift
 Tests/QuotaPulseKitTests/ClaudeConfigLocatorTests.swift
@@ -174,8 +168,8 @@ Tests/QuotaPulseKitTests/LoopbackCallbackServerTests.swift
 Tests/QuotaPulseKitTests/LowestQuotaWindowTests.swift
 Tests/QuotaPulseKitTests/OAuthTokenRefresherTests.swift
 Tests/QuotaPulseKitTests/OAuthTokenStoreTests.swift
-Tests/QuotaPulseKitTests/PersistentSurfaceTests.swift
 Tests/QuotaPulseKitTests/PKCEChallengeTests.swift
+Tests/QuotaPulseKitTests/PersistentSurfaceTests.swift
 Tests/QuotaPulseKitTests/QuotaAlertEvaluatorTests.swift
 Tests/QuotaPulseKitTests/QuotaConnectivityPayloadTests.swift
 Tests/QuotaPulseKitTests/QuotaFailureTests.swift
@@ -187,3 +181,9 @@ Tests/QuotaPulseKitTests/QuotaSyncThrottleTests.swift
 Tests/QuotaPulseKitTests/QuotaThresholdsStoreTests.swift
 Tests/QuotaPulseKitTests/QuotaWindowTests.swift
 Tests/QuotaPulseKitTests/UsageRequestCoordinatorTests.swift
+docs/macos-distribution.md
+docs/releases/0.3.0.md
+scripts/ExportOptions-DeveloperID.plist
+scripts/check-public-snapshot.sh
+scripts/publish-macos-release.sh
+scripts/release-macos.sh

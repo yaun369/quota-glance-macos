@@ -48,10 +48,18 @@ git -C ../quota-glance-macos status --short
 ```
 
 Review and commit a normal snapshot in the public repository. Never use
-`git push --mirror`, copy `.git`, or publish private branches/tags. The private
-manual workflow uses a fine-grained `PUBLIC_MAC_REPO_TOKEN` limited to the
-public repository's Contents permission and a protected
-`public-macos-sync` environment. Pull requests never receive that token.
+`git push --mirror`, copy `.git`, or publish private branches/tags.
+
+Every push to the private `main` branch also runs the same exporter in CI and
+pushes the resulting snapshot to the public `main` branch, so a merged pull
+request publishes its whitelisted paths without further action. The workflow
+still accepts a manual dispatch for re-runs, and runs are serialized so two
+merges cannot race the public push. Run the script locally when you want to
+inspect a snapshot before it ships, or to initialize an empty destination.
+
+The workflow uses a fine-grained `PUBLIC_MAC_REPO_TOKEN` limited to the public
+repository's Contents permission and a protected `public-macos-sync`
+environment. Pull requests never receive that token.
 
 ## One-time official release setup
 
@@ -68,8 +76,9 @@ public repository's Contents permission and a protected
 
 1. Update `Config/Version.xcconfig` and `docs/releases/X.Y.Z.md` in the private
    repository; run tests and a universal build.
-2. Export the clean snapshot. Wait for public CI, then tag that public source
-   commit `vX.Y.Z` and push the tag.
+2. Merge that work into `main` and let the sync workflow publish the snapshot.
+   Wait for public CI, then tag that public source commit `vX.Y.Z` and push the
+   tag.
 3. Check out the public tag and build from it:
 
    ```sh
