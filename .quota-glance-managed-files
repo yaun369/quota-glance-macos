@@ -183,6 +183,7 @@ Tests/QuotaPulseKitTests/QuotaWindowTests.swift
 Tests/QuotaPulseKitTests/UsageRequestCoordinatorTests.swift
 docs/macos-distribution.md
 docs/releases/0.3.0.md
+docs/releases/0.3.1.md
 scripts/ExportOptions-DeveloperID.plist
 scripts/check-public-snapshot.sh
 scripts/publish-macos-release.sh
