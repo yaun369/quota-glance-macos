@@ -42,5 +42,12 @@
 	<string>$(QUOTA_CLOUDKIT_CONTAINER_IDENTIFIER)</string>
 	<key>QuotaSparkleEnabled</key>
 	<string>$(QUOTA_SPARKLE_ENABLED)</string>
+	<!--
+	  Export compliance. The app uses only HTTPS/ATS and Apple-provided crypto
+	  (Keychain, CloudKit), which is exempt, so declaring this here stops App
+	  Store Connect from asking the encryption question on every submission.
+	-->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
