@@ -95,6 +95,36 @@ final class CodexOAuthLoginServiceTests: XCTestCase {
         }
     }
 
+    // MARK: - login(openBrowser:)
+
+    func testLoginReportsAuthorizationCodeBeforeStartingTokenExchange() async throws {
+        let callbackReported = CodexCallbackFlag()
+        let idToken = JWTPayloadTests.makeJWT(payload: [
+            "email": "person@example.com",
+            "https://api.openai.com/auth": ["chatgpt_account_id": "acct-123"],
+        ])
+        CodexOAuthURLProtocolStub.handler = { request in
+            XCTAssertTrue(callbackReported.value)
+            let response = HTTPURLResponse(
+                url: try XCTUnwrap(request.url),
+                statusCode: 200,
+                httpVersion: "HTTP/1.1",
+                headerFields: nil
+            )!
+            return (response, Data("""
+            { "id_token": "\(idToken)", "access_token": "access-1", "refresh_token": "refresh-1" }
+            """.utf8))
+        }
+
+        let credential = try await makeService().login(
+            openBrowser: { authorizeURL in Self.sendSuccessfulCallback(for: authorizeURL) },
+            onAuthorizationCodeReceived: { callbackReported.set() },
+            callbackTimeout: 5
+        )
+
+        XCTAssertEqual(credential.accountID, "acct-123")
+    }
+
     // MARK: - refresh(refreshToken:)
 
     func testRefreshSendsJSONRequestAndMapsSuccessfulResponse() async throws {
@@ -226,6 +256,35 @@ final class CodexOAuthLoginServiceTests: XCTestCase {
             data.append(buffer, count: read)
         }
         return data
+    }
+
+    private static func sendSuccessfulCallback(for authorizeURL: URL) {
+        let authorize = URLComponents(url: authorizeURL, resolvingAgainstBaseURL: false)
+        let query = Dictionary(uniqueKeysWithValues: (authorize?.queryItems ?? []).map { ($0.name, $0.value ?? "") })
+        guard var callback = URLComponents(string: query["redirect_uri"] ?? "") else { return }
+        callback.queryItems = [
+            URLQueryItem(name: "code", value: "auth-code-1"),
+            URLQueryItem(name: "state", value: query["state"]),
+        ]
+        guard let callbackURL = callback.url else { return }
+        Task { _ = try? await URLSession.shared.data(from: callbackURL) }
+    }
+}
+
+private final class CodexCallbackFlag: @unchecked Sendable {
+    private let lock = NSLock()
+    private var storage = false
+
+    var value: Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        return storage
+    }
+
+    func set() {
+        lock.lock()
+        storage = true
+        lock.unlock()
     }
 }
 

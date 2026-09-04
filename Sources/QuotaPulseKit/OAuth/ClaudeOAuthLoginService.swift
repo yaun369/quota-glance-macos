@@ -86,6 +86,7 @@ public struct ClaudeOAuthLoginService: Sendable {
     /// the user has to free the port and retry.
     public func loginViaLoopback(
         openBrowser: @Sendable (URL) -> Void,
+        onAuthorizationCodeReceived: @Sendable () async -> Void = {},
         callbackTimeout: TimeInterval = 300
     ) async throws -> OAuthCredential {
         let pkce = PKCESession()
@@ -113,6 +114,7 @@ public struct ClaudeOAuthLoginService: Sendable {
         }
 
         let code = try Self.extractAuthorizationCode(from: query, expectedState: pkce.state)
+        await onAuthorizationCodeReceived()
         return try await exchangeCode(
             code: code,
             codeVerifier: pkce.codeVerifier,

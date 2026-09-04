@@ -93,6 +93,7 @@ public struct CodexOAuthLoginService: Sendable {
     /// exchanges the resulting code for tokens.
     public func login(
         openBrowser: @Sendable (URL) -> Void,
+        onAuthorizationCodeReceived: @Sendable () async -> Void = {},
         callbackTimeout: TimeInterval = 300
     ) async throws -> OAuthCredential {
         let pkce = PKCESession()
@@ -114,6 +115,7 @@ public struct CodexOAuthLoginService: Sendable {
         }
 
         let code = try Self.extractAuthorizationCode(from: query, expectedState: pkce.state)
+        await onAuthorizationCodeReceived()
         let tokens = try await exchangeCode(code: code, codeVerifier: pkce.codeVerifier, redirectURI: redirectURI)
         return try Self.credential(from: tokens, now: now())
     }
